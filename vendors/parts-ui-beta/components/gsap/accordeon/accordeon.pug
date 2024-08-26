@@ -1,0 +1,19 @@
+mixin accordeon-item(title)
+  +e.item&attributes(attributes)
+    +e.heading
+      +e.icon
+      +e.title= title
+      
+    +e.content
+      +e.text
+        if block
+          block
+            
+mixin accordeon(mod)
+  - var modifier = ''
+  if mod != undefined
+    - modifier = mod
+  +b.accordeon(class=modifier)&attributes(attributes)
+    if block
+      block
+    

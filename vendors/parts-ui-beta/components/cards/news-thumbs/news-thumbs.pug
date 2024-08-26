@@ -1,0 +1,37 @@
+mixin news-thumb(image,title,text,times,note)
+	+b.A(href="#").card.--shadow.--contain
+		+e.section.--image.--rect(style="background-image: url('"+image+"')")
+		+e.section.--content
+			+e.title.--str2.text-h4= title
+			+e.text.--str3= text
+			+e.note= times
+
+mixin news-thumb-md(image,title,text,times,note)
+	+b.A(href="#").card.--shadow.--contain
+		+e.section.--bg.--rect(style="background-image: url('"+image+"')")
+			+e.section.--inside.--bottom.--md
+				+e.label= note
+				+e.title.--str3.text-h5.text-color-light= title
+		+e.section.--content.--md
+			+e.text.--str5.text-md= text
+			+e.note= times
+
+mixin news-thumb-x(image,title,text,times,note)
+	+b.A(href="#").card.--border.--x.--contain
+		+e.section.--bg.--album(style="background-image: url('"+image+"')")
+			+e.section.--inside.--bottom
+				+e.label= note
+				+e.title.--str3.text-h4.text-color-light= title
+		+e.section.--content
+			+e.text= text
+			+e.note= times
+
+mixin news-thumb-x-md(image,title,text,times,note)
+	+b.A(href="#").card.--border.--x.--contain
+		+e.section.--bg(style="background-image: url('"+image+"')")
+			+e.section.--inside.--bottom.--md
+				+e.label= note
+				+e.title.text-h5.text-color-light= title
+		+e.section.--content.--md
+			+e.text.text-md= text
+			+e.note= times

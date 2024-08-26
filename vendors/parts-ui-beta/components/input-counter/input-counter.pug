@@ -1,0 +1,11 @@
+mixin input-counter(mod,val)
+  - var value = '1'
+  - var disabledMod = theme.prefix+'-input__button--disabled'
+  if val != undefined
+    - value = val
+    if val != '1'
+      - disabledMod = ''
+  +b.input.--counter(class=mod)&attributes(attributes)
+    +e.SPAN.button(data-counter=themeEl+'-input--counter' class=disabledMod).--minus.js-input-minus
+    input(type="text" value=value)
+    +e.SPAN.button(data-counter=themeEl+'-input--counter').--plus.js-input-plus

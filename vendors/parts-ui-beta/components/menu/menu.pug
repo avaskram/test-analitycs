@@ -1,0 +1,24 @@
+
+
+//- mixin menu-item(name,target,icon)
+//- 	- var href = '#'
+//- 	- var act = ''
+//- 	- var subact = ''
+//- 
+//- 	if target != undefined & target != ''
+//- 		- href = target
+//- 
+//- 	if name == currentPage[0]
+//- 		- act = isActive
+//- 
+//- 	if name == currentPage[1]
+//- 		- subact = isActive
+//- 
+//- 	+e.item(class=act+' '+subact)
+//- 		+e.A.link(href=href)
+//- 			if icon != undefined & icon != ''
+//- 				+e.SPAN.icon
+//- 					+icon(icon)
+//- 			+e.SPAN.name= name
+//- 		if block
+//- 			block

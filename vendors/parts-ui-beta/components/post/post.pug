@@ -1,0 +1,12 @@
+mixin post-field()
+  +b.post.form
+    form
+      +e.container
+        +e.TEXTAREA.input.--lg(data-autoresize name="message" placeholder="Your message here")
+        +e.button
+          +btn-submit('--info')(class="__submit")
+            span.text-demi Submit comment
+      +response('--error')
+        +e.title Error
+      +response('--success')
+        +e.title Success

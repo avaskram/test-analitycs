@@ -1,0 +1,9 @@
+mixin comment-item(status,name,times,text)
+  +e.item&attributes(attributes)
+    +e.status= status
+    +e.content
+      +e.title 
+        +e.SPAN.name= name
+        +e.SPAN.times= times
+      +e.text
+        p= text

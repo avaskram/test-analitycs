@@ -1,0 +1,14 @@
+mixin pagination(total, current)
+  - var n = 2;
+  +b.pagination
+    +e.A(href="#").item.--prev
+      +icon('ic-arrow-left')
+    +e.A(href="#").item.--current 1
+    while n < total
+      +e.A(href="#").item= n++
+    
+    +e.A(href="#").item.--next
+      +icon('ic-arrow-right')
+    
+
+    

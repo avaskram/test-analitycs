@@ -1,0 +1,9 @@
+mixin search()
+  +b.search
+    form(id="searchForm")
+      +e.container
+        +e.field
+          +e.INPUT.input(type="text")
+        +e.button
+          +b.BUTTON(type="submit")
+          +icon('ic-search')

@@ -1,0 +1,74 @@
++theme(tabs)
+  &__nav
+    position relative
+    z-index 1
+    margin-bottom $rem-lg
+    margin-top $text-indent
+    flex-row-md()
+    clear-margin-top()
+
+    &--right
+      justify-content flex-end
+      
+    &--center
+      justify-content center
+    &--justify
+      justify-content space-between
+
+    &--wild
+      +child-el(link)
+        padding-x(3rem)
+        padding-bottom .88rem
+
+  &__link
+    transition color .2s ease 0s, border .2s ease 0s
+    cursor pointer
+    padding 1rem $rem-lg
+    border-bottom 3px solid transparent
+    margin-bottom -1px
+    text-align center
+
+    &:hover
+      border-color $gray-border
+
+    +active()
+      border-bottom-color $theme-color
+
+    &--icon
+      padding $rem-sm $size-h3 $rem-xxs
+      text-center()
+      text-h4()
+
+
+  &__slider
+    bg-theme()
+    transition transform .21s $quint 0s
+    position absolute
+    height 3px
+    left 0
+    bottom -1px
+
+  &__container
+    position relative
+
+  &__item
+    opacity .8
+    pointer-events none
+    position absolute
+    transform translate3d(0px,0px,0) scale(.99) rotate(0.00001deg)
+    transform-origin top center
+    transition opacity 0.5s ease 0s, transform 0s ease 0s, height 0s ease 0.5s
+    will-change opacity, transform
+    height 0
+    width 0
+    overflow hidden
+
+    +active()
+      visible()
+      transform translate3d(0px,0px,0) scale(1) rotate(0.00001deg)
+      visibility visible
+      position relative
+      overflow visible
+      height auto
+      width auto
+      transition opacity .15s ease 0s, transform .55s $ease-out-quint 0s

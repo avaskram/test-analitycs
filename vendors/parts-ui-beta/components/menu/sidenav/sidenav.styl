@@ -1,0 +1,111 @@
+$sidenav-width = 250px
+$sidenav-hidden = 46px
+
++theme(sidenav)
+	width $sidenav-width
+	z-index 50
+	position fixed
+	top 0
+	bottom 0
+	height 100%
+
+	&--left
+		left 0
+
+	&--right
+		right 0
+
+	&--dark
+		bg-dark()
+		text-color-light()
+		
+	&--light
+		bg-light()
+		text-color-base()
+
+	&__container
+		flex-col()
+		padding-y(0)
+		position relative
+
+	&__section
+		position relative
+
+		&--list
+			overflow-x hidden
+			overflow-y auto
+			-webkit-overflow-scrolling touch
+			position relative
+			flex 1
+			padding 0
+
+
+	&__content
+		fullsize()
+
+	&__list
+		display block
+		margin 0
+
+		&--sub
+			padding-top 0
+			height 0
+			overflow hidden
+			+child-el(item)
+				border 0
+			+child-el(link)
+				height auto
+
+	&__item
+		border-bottom-alpha(1px,#000,.1)
+		position relative
+		+before()
+			fullsize()
+			transition-opacity(.2s)
+			background-color #000
+			opacity 0
+
+		+active()
+			&:before
+				opacity .08
+
+	&__link
+		flex-row-md()
+		padding-y($rem-md)
+		padding-x($container-padding)
+		text-color-light()
+		height 3rem
+		position relative
+		transition background .2s ease 0s
+
+		+before()
+			fullsize()
+			background-color #000
+			opacity 0
+			transition opacity .2s ease 0s
+
+		&:hover
+			&:before
+				opacity .1
+
+			+child-el(icon)
+				opacity 1
+
+	&__name
+		text-demi()
+
+	&__icon
+		flex-col-center()
+		text-h4()
+		width 1rem
+		margin-right .5em
+		opacity .5
+		transition opacity .2s ease 0s
+
+	&__text
+		text-sm()
+		text-color-light()
+		text-font-title()
+		text-medium()
+		text-caps()
+		text-space()

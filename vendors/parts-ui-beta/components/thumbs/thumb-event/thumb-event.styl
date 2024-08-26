@@ -1,0 +1,252 @@
+.{$theme}-thumb
+	&--event
+    position relative
+    background-color $bg-dark
+    display block
+    color #fff
+    overflow hidden
+    transition box-shadow .5s $ease-out-quint 0s
+    box-shadow none
+    margin-bottom -.5rem
+
+    +touch()
+      margin-bottom .5rem
+
+    +media(sm)
+      margin-bottom 1rem
+
+    +child-el(image)
+      position relative
+      padding-bottom 100%
+      opacity 1
+
+    +child-el(bg)
+      opacity .4
+      transition transform .88s $ease-out-quint 0s, opacity .5s ease 0s
+      transform scale(1.03) translate3d(0,0,0)
+
+      +before()
+        fullsize-top()
+        height 100%
+        gradient-color-top(darken($bg-dark,3))
+        // gradient-color-top(darken($bg-dark,3))
+        opacity .7
+        transition opacity .5s ease 0s
+
+      // +after()
+      //   fullsize-bottom()
+      //   // gradient-dark-bottom()
+      //   gradient-color-bottom(darken($bg-dark,3))
+      //   gradient-color-right(darken($bg-dark,3))
+      //   height 100%
+      //   transition opacity .5s ease 0s
+      //   opacity .6
+
+
+    +child-el(content)
+      fullsize()
+      flex-col-bottom()
+      align-items center
+      padding-bottom 2rem
+
+      +before()
+        fullsize()
+        borders-top(.5rem solid #fff)
+        transform scale(1) translate3d(0,0,0)
+        transition transform .55s $ease-out-quint 0s
+
+        .{$theme}-section--gray &
+          border-color $bg-gray
+
+        .{$theme}-section--dark &
+          border-color $bg-dark
+
+
+      +after()
+        fullsize-bottom()
+        height 1rem
+        background-color #fff
+        transform translate3d(0,0,0)
+        transition transform .55s $ease-out-quint 0s
+
+        .{$theme}-section--gray &
+          background-color $bg-gray
+
+        .{$theme}-section--dark &
+          background-color $bg-dark
+
+        touch-hide()
+
+
+      &:before
+      &:after
+        media-hide(sm)
+
+
+
+    +child-el(title)
+      position absolute
+      padding 2rem
+      left 0
+      top 0
+      text-shadow 0 0 2rem  0px alpha($bg-dark,.7)
+
+
+    +child-el(name)
+      text-h3()
+      padding-right 70px
+      padding-top .5rem
+
+      +media(m)
+        text-h4()
+
+    +child-el(description)
+      display block
+      padding-top 1rem
+
+    +child-el(date-item)
+
+      display block
+      position absolute
+      right 0
+      top 0
+      padding-right 2rem
+      padding-top 2.4rem
+      width auto
+
+    +child-el(date)
+      width auto
+      min-width auto
+      padding-right 0
+
+      +media(l)
+        padding-right 0
+
+
+    +child-el(day)
+      display block
+      text-h3()
+      text-bold()
+
+      +media(l)
+        text-h3()
+
+    +child-el(month)
+      display block
+      text-transform uppercase
+      text-sm()
+
+      +media(l)
+        text-xxs()
+
+
+    +child-el(text)
+      display block
+      fullsize-bottom()
+      padding 2rem
+
+
+    +child-el(info)
+      text-xl()
+      text-medium()
+      text-transform none
+
+
+    +child-el(subinfo)
+      display block
+      position relative
+      text-font-base()
+      text-medium()
+
+    +child-el(moreinfo)
+      margin-top .3rem
+      padding-top .25rem
+      position relative
+      text-xs()
+      text-medium()
+      text-align center
+      border-top 1px solid alpha(#fff,.3)
+
+    +child-el(tickets)
+      position absolute
+      left 0
+      right 0
+      bottom 1rem
+      padding 2rem
+      text-align right
+      opacity 1
+      transition transform .33s $ease-out-quint 0s, opacity .2s ease 0s
+
+      +media(sm)
+        text-align right
+        padding-x(0)
+        padding-bottom .5rem
+        position static
+        transform-reset()
+        opacity .8
+
+      +touch()
+        text-align right
+        padding-x(0)
+        padding-bottom .5rem
+        position static
+        transform-reset()
+        opacity .8
+
+
+
+    +child-el(link)
+      fullsize()
+
+    +child-el(btn)
+      // margin-bottom 1rem
+      text-align center
+      invisible()
+      transform translate3d(0,55px,0) scale(1)
+      transition transform .55s $ease-out-expo 0s, opacity .2s ease 0s
+      .parts-btn
+        transform-reset()
+      +media(s)
+        visible-transform()
+        margin-bottom 0
+        .parts-btn
+          display block
+
+      +touch()
+        visible-transform()
+        margin-bottom 0
+        .parts-btn
+          display block
+
+
+
+    &:hover
+      z-index 1
+      +media-min(sm)
+        +child-el(content)
+          &:before
+            transform scale(1.05) translate3d(0,0,0)
+            transition transform .66s $ease-out-quint 0s
+          &:after
+            transform translate3d(0,100%,0)
+            transition transform .66s $ease-out-quint 0s
+
+
+        +child-el(bg)
+          opacity .2
+          scaled(1)
+
+        +child-el(tickets)
+          invisible()
+          +touch()
+            visible()
+
+        +child-el(btn)
+          transform-reset()
+          visible()
+          transition transform .44s $ease-out-circ 0s, opacity .3s ease 0s
+
+
+      +media(sm)
+        +child-el(tickets)
+          opacity .8

@@ -1,0 +1,19 @@
+mixin breadcrumb-link(name,link)
+  - var target = '/'
+  if link != undefined
+    - target = link
+  +e.item(itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem")
+    +e.A(href=target itemprop="item").link= name
+
+mixin breadcrumb-current(name)
+  +e.item(itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem")
+    +e.SPAN.current= name
+
+mixin breadcrumbs(...items)
+  +b.breadcrumbs(itemscope itemtype="http://schema.org/BreadcrumbList")&attributes(attributes)
+    - var itemsNum = items.length
+    for item,index in items
+      if index != (itemsNum-1)
+        +breadcrumb-link(item)
+      else
+        +breadcrumb-current(item)

@@ -1,0 +1,35 @@
+mixin scroll-table()
+	+b.scroll-table
+		+e.container
+			+e.inner
+				table.table
+					if block
+						block
+
+
+//- content example
+	thead
+		tr
+			th(style="text-align: center;") title 1
+			th(style="text-align: center;") title 2
+			th(style="text-align: center;") title 3
+			th(style="text-align: center;") title 4
+	tbody
+		tr
+			td(style="text-align: center;") value 1
+			td(style="text-align: center;") value 2
+			td(style="text-align: center;") value 3
+			td(style="text-align: center;") value 4
+
+
+		tr
+			td(style="text-align: center;") value 1
+			td(style="text-align: center;") value 2
+			td(style="text-align: center;") value 3
+			td(style="text-align: center;") value 4
+
+	tfoot
+		tr
+			td() total 1
+			td(style="text-align: center;") total 2
+			td(style="text-align: center;") total 3

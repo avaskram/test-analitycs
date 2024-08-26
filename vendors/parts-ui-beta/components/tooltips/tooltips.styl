@@ -1,0 +1,52 @@
+$tooltip-offset = 10px
+$tooltip-colors = theme info success alert warning light dark
+
++theme(tooltip)
+	inline-block()
+	position relative
+	
+	&:hover
+		z-index 2
+		+child-el(item)
+			visible()
+			transform opacity .1s $quint 0s
+
+		+child-el(section)
+			visible-transform()
+			transform transform .1s $quint 0s
+
+	&__section
+		display block
+		padding $card-padding-sm
+		border-radius $card-radius
+		box-shadow $shadow-lg
+		position relative
+		transition transform .3s $quint 0s
+		bg-light()
+
+	&__item
+		tooltip-base()
+		transform opacity .2s $quint 0s
+
+		for bg in $tooltip-colors
+			&--{bg}
+				+child-el(section)
+					bg-{bg}()
+
+		for pos in top bottom left right
+			&--{pos}
+				tooltip(pos)
+				+child-el(section)
+					+after()
+						dropdown-arrow-{pos}(8px #fff)
+
+				for bg in $colors.state
+					&^[1]--{bg}
+						+child-el(section)
+							&:after
+								border-{pos}-color $+(bg)+(-color)
+
+					&^[1]--dark
+						+child-el(section)
+							&:after
+								border-{pos}-color $dark-color

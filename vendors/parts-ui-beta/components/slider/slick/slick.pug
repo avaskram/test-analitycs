@@ -1,0 +1,45 @@
+
+mixin slider-nav()
+  +e.nav
+    +e.link.--prev
+      +e.arrow
+    +e.link.--next
+      +e.arrow
+
+mixin slider-list()
+  +e.list.js-slick-slider(data-slick=slickConfig)&attributes(attributes)
+    if block
+      block
+        
+mixin slider-container()
+  +e.container
+    +slider-list()
+      if block
+        block
+
+mixin slider({mod,slick,container,nav})
+  - var containerMod = ''
+  - var modifiers = ''
+  - 
+    var slickConfig = {
+      "arrows": "false",
+      "infinite": "false",
+      "dots": "false",
+      "adaptiveHeight": "false"
+    }
+  if slick != undefined
+    - slickConfig = slick
+      
+  if container != undefined & container != ''
+    - containerMod = container
+    
+  if mod != undefined && mod != null
+    - modifiers = mod
+    
+  +b.slider(class=modifiers)
+    +e.container(class=containerMod)
+      +e.list.js-slick-slider(data-slick=slickConfig)&attributes(attributes)
+        if block
+          block
+    if nav == 'true'
+      +slider-nav()

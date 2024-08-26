@@ -1,0 +1,81 @@
++theme(video)
+  background-color $bg-dark
+  position relative
+  padding-bottom 45%
+  color #fff
+  overflow hidden
+  display block
+  cursor pointer
+  font-size 0
+
+  &__bg
+    &--image
+      fullsize-bg()
+      transition-opacity(.5s)
+      opacity .3
+
+    &--video
+      fullsize-scale(0px,0px)
+      opacity .2
+      video
+        bg-video()
+
+
+  &__container
+    fullsize()
+    display flex
+    align-items center
+
+  &__content
+    container-base()
+    container-md()
+    flex-grow 1
+    text-align center
+
+  &__play
+    circle(120px)
+    inline-block-md()
+    transition-transform(.3s)
+    transform-reset()
+    background-color alpha(#fff,.8)
+    position relative
+
+    +before()
+      border-arrow-right(16px,18px,$base-color)
+      position absolute
+      display block
+      left 50%
+      top 50%
+      margin-left -4px
+      margin-top -8px
+
+  &__note
+    text-sm()
+    text-caps()
+    text-demi()
+    text-space-sm()
+    text-color-light()
+    margin-top 1rem
+    margin-bottom -1rem
+
+  &:hover
+    +child-el(play)
+      scaled(1.05)
+      transition-duration .3s
+
+    +child-el(bg-image)
+      opacity .4
+
+
+  iframe
+    fullsize()
+    invisible()
+    square(100%)
+    transition opacity .2s ease 1s
+
+
+  &--played
+    +child-el(container)
+      invisible()
+    iframe
+      visible()

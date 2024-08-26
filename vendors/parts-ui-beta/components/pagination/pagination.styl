@@ -1,0 +1,27 @@
++theme(pagination)
+  flex-row-center()
+  margin-y(3.4rem)
+  margin-clear-y()
+  flex-wrap wrap
+
+  &__item
+    circle(36px)
+    text-demi()
+    margin-x(.1rem)
+    text-align center
+    line-height 32px
+    color $base-color
+
+    &:hover
+      border-color $gray-light
+
+    &--current
+      text-color-theme()
+      border-color $info-color
+      pointer-events none
+
+
+  +media(md)
+    &__item
+      circle(28px)
+      line-height 24px

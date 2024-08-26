@@ -1,0 +1,1060 @@
+mixin googlemapinittest()
+  script.
+    function initMap() {
+      var e=new google.maps.LatLng(lat, lng, zoom),
+      o= {
+          center: e, zoom: zoom, mapTypeControl: !1, scrollwheel: !1, disableDefaultUI: !0, styles: mapStyle, backgroundColor: "#212328"
+      }
+      ,
+      a=document.getElementById("map"),
+      n=new google.maps.Map(a, o);
+      points.forEach(function(e, o, a) {
+          var t=new google.maps.Marker( {
+              map:n, 
+              draggable:!1, 
+              position:new google.maps.LatLng(e.lng, e.lat), 
+              visible:!0, 
+              icon: {
+                url: markerSrc, 
+                scaledSize: new google.maps.Size(markerWidth, markerHeight)
+              }
+          }), 
+          l=document.createElement("div");
+          l.style.cssText="", 
+          l.innerHTML='<span class="map-baloon" style="font-family: Stem Regular"><span>'+e.title+"</span>";
+          var i= {
+              content:l, 
+              disableAutoPan:!1, 
+              maxWidth:0, 
+              pixelOffset:new google.maps.Size(-1, -100), 
+              zIndex:null, 
+              boxStyle: {
+                opacity: 1, width: "200px", marginLeft: "-100px", marginTop: "-20px"
+              }
+              , 
+              contextmenu:!0, 
+              closeBoxMargin:"0", 
+              closeBoxURL:"", 
+              infoBoxClearance:new google.maps.Size(1, 1), 
+              isHidden:!1, 
+              pane:"floatPane", 
+              enableEventPropagation:!1
+          }
+          ;
+          new InfoBox(i).open(n, t)
+      }
+      )
+    }
+
+    google.maps.event.addDomListener(window, "load", initMap);
+    
+    
+    
+  script.
+    var marker = [];
+      var markerSrc = '/views/site/img/fitunion-marker.svg';
+      var markerSrcActive = '/views/site/img/fitunion-marker-active.svg';
+      var markerWidth = 23;
+      var markerHeight = 30;
+      var myLatLng = {lat:44.5955009, lng:40.0999179};
+
+      function bounceon(marker) {
+        marker.setIcon(markerSrcActive);
+        marker.setOptions({zIndex:9999});
+      }
+      function bounceoff(marker) {
+        marker.setIcon(markerSrc);
+        marker.setOptions({zIndex:0});
+      }
+
+        function initMap() {
+
+          var map = new google.maps.Map(document.getElementById('map'), {
+            center: myLatLng,
+            maxZoom: 16,
+            mapTypeControl: false,
+            disableDefaultUI: true,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+
+        latlngbounds = new google.maps.LatLngBounds();
+
+        infowindow = new google.maps.InfoWindow();
+        google.maps.event.addListener(map, "click", function(event) {
+          infowindow.close();
+        });
+
+          marker[30] = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            position: {lat:55.8106941, lng:37.617431},
+            visible: true,
+            optimized: false,
+            icon: {
+              url: markerSrc,
+              scaledSize: new google.maps.Size(markerWidth, markerHeight)
+            }
+          });
+
+          var contentString = '<div class="map-baloon" style="font-family: PT Sans;">' +
+            '<a href="/club/moskva/la-sport" class="card-item card-item--sm card-item--accent card-item--map">' +
+            '<span class="card-item__image">' +
+            '<img src="/uploads/images/clubs/30/30-small.jpg" srcset="/uploads/images/clubs/30/30-small.jpg 2x" class="card-item__img" style="width:auto; height: 75px; margin: 0 auto;"/>' +
+            '<span class="prop-list prop-list--sm">' +
+            '' +
+              '<span class="prop-list__item prop-list__item--stream"></span>' +
+              '</span>' +
+              ' </span>' +
+              '<span class="card-item__description">' +
+              '<span class="card-item__name">' +
+              "<span>La Sport</span>"+
+              '</span>' +
+              '<span class="prop-list prop-list--right">' +
+              '<span class="prop-list__item prop-list__item--rating">4.75</span>' +
+              '<span class="prop-list__item prop-list__item--repost">0</span>' +
+              '<span class="prop-list__item prop-list__item--views">11</span>' +
+              '</span>' +
+              '</span>' +
+              '</a>' +
+              '</div>';
+
+          google.maps.event.addListener(marker[30], 'click', (function (marker, contentString,infowindow) {
+            return function () {
+
+              infowindow.setContent(contentString);
+              infowindow.open(map, marker[30]);
+            };
+          })(marker, contentString, infowindow));
+
+          google.maps.event.addListener(marker[30], 'mouseover', function () {
+            this.setIcon(markerSrcActive);
+          });
+          google.maps.event.addListener(marker[30], 'mouseout', function () {
+            this.setIcon(markerSrc);
+          });
+
+
+          loc = new google.maps.LatLng("55.8106941", "37.617431");
+          latlngbounds.extend(loc);
+
+          google.maps.event.addListener(infowindow, 'domready', function() {
+
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+            iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+            iwOuter.parent().parent().css({left: '0'});
+            iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').find('div').children().css({'display' : 'none'});
+            var iwCloseBtn = iwOuter.next();
+
+            iwCloseBtn.css({'right' : '-336px', 'top' : '54px'});
+            if($('.iw-content').height() < 140){
+              $('.iw-bottom-gradient').css({display: 'none'});
+            }
+            iwCloseBtn.mouseout(function(){
+              $(this).css({opacity: '1'});
+            });
+          });				
+
+          marker[34] = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            position: {lat:55.765756, lng:37.6180509},
+            visible: true,
+            optimized: false,
+            icon: {
+              url: markerSrc,
+              scaledSize: new google.maps.Size(markerWidth, markerHeight)
+            }
+          });
+
+          var contentString = '<div class="map-baloon" style="font-family: PT Sans;">' +
+            '<a href="/club/moskva/abrau-joga" class="card-item card-item--sm card-item--accent card-item--map">' +
+            '<span class="card-item__image">' +
+            '<img src="/uploads/images/clubs/34/34-small.jpg" srcset="/uploads/images/clubs/34/34-small.jpg 2x" class="card-item__img" style="width:auto; height: 75px; margin: 0 auto;"/>' +
+            '<span class="prop-list prop-list--sm">' +
+            '' +
+              '<span class="prop-list__item prop-list__item--stream"></span>' +
+              '</span>' +
+              ' </span>' +
+              '<span class="card-item__description">' +
+              '<span class="card-item__name">' +
+              "<span>Абрау-йога</span>"+
+              '</span>' +
+              '<span class="prop-list prop-list--right">' +
+              '<span class="prop-list__item prop-list__item--rating">4.75</span>' +
+              '<span class="prop-list__item prop-list__item--repost">1</span>' +
+              '<span class="prop-list__item prop-list__item--views">9</span>' +
+              '</span>' +
+              '</span>' +
+              '</a>' +
+              '</div>';
+
+          google.maps.event.addListener(marker[34], 'click', (function (marker, contentString,infowindow) {
+            return function () {
+
+              infowindow.setContent(contentString);
+              infowindow.open(map, marker[34]);
+            };
+          })(marker, contentString, infowindow));
+
+          google.maps.event.addListener(marker[34], 'mouseover', function () {
+            this.setIcon(markerSrcActive);
+          });
+          google.maps.event.addListener(marker[34], 'mouseout', function () {
+            this.setIcon(markerSrc);
+          });
+
+
+          loc = new google.maps.LatLng("55.765756", "37.6180509");
+          latlngbounds.extend(loc);
+
+          google.maps.event.addListener(infowindow, 'domready', function() {
+
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+            iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+            iwOuter.parent().parent().css({left: '0'});
+            iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').find('div').children().css({'display' : 'none'});
+            var iwCloseBtn = iwOuter.next();
+
+            iwCloseBtn.css({'right' : '-336px', 'top' : '54px'});
+            if($('.iw-content').height() < 140){
+              $('.iw-bottom-gradient').css({display: 'none'});
+            }
+            iwCloseBtn.mouseout(function(){
+              $(this).css({opacity: '1'});
+            });
+          });				
+
+          marker[31] = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            position: {lat:55.729818, lng:37.5708928},
+            visible: true,
+            optimized: false,
+            icon: {
+              url: markerSrc,
+              scaledSize: new google.maps.Size(markerWidth, markerHeight)
+            }
+          });
+
+          var contentString = '<div class="map-baloon" style="font-family: PT Sans;">' +
+            '<a href="/club/moskva/don-sport-hamovniki" class="card-item card-item--sm card-item--accent card-item--map">' +
+            '<span class="card-item__image">' +
+            '<img src="/uploads/images/clubs/31/31-small.jpg" srcset="/uploads/images/clubs/31/31-small.jpg 2x" class="card-item__img" style="width:auto; height: 75px; margin: 0 auto;"/>' +
+            '<span class="prop-list prop-list--sm">' +
+            '' +
+              '<span class="prop-list__item prop-list__item--stream"></span>' +
+              '</span>' +
+              ' </span>' +
+              '<span class="card-item__description">' +
+              '<span class="card-item__name">' +
+              "<span>ДОН-Спорт Хамовники  </span>"+
+              '</span>' +
+              '<span class="prop-list prop-list--right">' +
+              '<span class="prop-list__item prop-list__item--rating">4.75</span>' +
+              '<span class="prop-list__item prop-list__item--repost">1</span>' +
+              '<span class="prop-list__item prop-list__item--views">8</span>' +
+              '</span>' +
+              '</span>' +
+              '</a>' +
+              '</div>';
+
+          google.maps.event.addListener(marker[31], 'click', (function (marker, contentString,infowindow) {
+            return function () {
+
+              infowindow.setContent(contentString);
+              infowindow.open(map, marker[31]);
+            };
+          })(marker, contentString, infowindow));
+
+          google.maps.event.addListener(marker[31], 'mouseover', function () {
+            this.setIcon(markerSrcActive);
+          });
+          google.maps.event.addListener(marker[31], 'mouseout', function () {
+            this.setIcon(markerSrc);
+          });
+
+
+          loc = new google.maps.LatLng("55.729818", "37.5708928");
+          latlngbounds.extend(loc);
+
+          google.maps.event.addListener(infowindow, 'domready', function() {
+
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+            iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+            iwOuter.parent().parent().css({left: '0'});
+            iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').find('div').children().css({'display' : 'none'});
+            var iwCloseBtn = iwOuter.next();
+
+            iwCloseBtn.css({'right' : '-336px', 'top' : '54px'});
+            if($('.iw-content').height() < 140){
+              $('.iw-bottom-gradient').css({display: 'none'});
+            }
+            iwCloseBtn.mouseout(function(){
+              $(this).css({opacity: '1'});
+            });
+          });				
+
+          marker[26] = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            position: {lat:55.757231, lng:37.6591369},
+            visible: true,
+            optimized: false,
+            icon: {
+              url: markerSrc,
+              scaledSize: new google.maps.Size(markerWidth, markerHeight)
+            }
+          });
+
+          var contentString = '<div class="map-baloon" style="font-family: PT Sans;">' +
+            '<a href="/club/moskva/atrium-fitnes" class="card-item card-item--sm card-item--accent card-item--map">' +
+            '<span class="card-item__image">' +
+            '<img src="/uploads/images/clubs/26/26-small.jpg" srcset="/uploads/images/clubs/26/26-small.jpg 2x" class="card-item__img" style="width:auto; height: 75px; margin: 0 auto;"/>' +
+            '<span class="prop-list prop-list--sm">' +
+            '' +
+              '<span class="prop-list__item prop-list__item--stream"></span>' +
+              '</span>' +
+              ' </span>' +
+              '<span class="card-item__description">' +
+              '<span class="card-item__name">' +
+              "<span>Атриум-фитнес </span>"+
+              '</span>' +
+              '<span class="prop-list prop-list--right">' +
+              '<span class="prop-list__item prop-list__item--rating">4.75</span>' +
+              '<span class="prop-list__item prop-list__item--repost">1</span>' +
+              '<span class="prop-list__item prop-list__item--views">5</span>' +
+              '</span>' +
+              '</span>' +
+              '</a>' +
+              '</div>';
+
+          google.maps.event.addListener(marker[26], 'click', (function (marker, contentString,infowindow) {
+            return function () {
+
+              infowindow.setContent(contentString);
+              infowindow.open(map, marker[26]);
+            };
+          })(marker, contentString, infowindow));
+
+          google.maps.event.addListener(marker[26], 'mouseover', function () {
+            this.setIcon(markerSrcActive);
+          });
+          google.maps.event.addListener(marker[26], 'mouseout', function () {
+            this.setIcon(markerSrc);
+          });
+
+
+          loc = new google.maps.LatLng("55.757231", "37.6591369");
+          latlngbounds.extend(loc);
+
+          google.maps.event.addListener(infowindow, 'domready', function() {
+
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+            iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+            iwOuter.parent().parent().css({left: '0'});
+            iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').find('div').children().css({'display' : 'none'});
+            var iwCloseBtn = iwOuter.next();
+
+            iwCloseBtn.css({'right' : '-336px', 'top' : '54px'});
+            if($('.iw-content').height() < 140){
+              $('.iw-bottom-gradient').css({display: 'none'});
+            }
+            iwCloseBtn.mouseout(function(){
+              $(this).css({opacity: '1'});
+            });
+          });				
+
+          marker[32] = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            position: {lat:55.49078, lng:37.302812},
+            visible: true,
+            optimized: false,
+            icon: {
+              url: markerSrc,
+              scaledSize: new google.maps.Size(markerWidth, markerHeight)
+            }
+          });
+
+          var contentString = '<div class="map-baloon" style="font-family: PT Sans;">' +
+            '<a href="/club/moskva/centr-jogi-i-zdorov-ya-na-dostoevskoj-pri-moskovskom-universitete-jogi" class="card-item card-item--sm card-item--accent card-item--map">' +
+            '<span class="card-item__image">' +
+            '<img src="/uploads/images/clubs/32/32-small.jpg" srcset="/uploads/images/clubs/32/32-small.jpg 2x" class="card-item__img" style="width:auto; height: 75px; margin: 0 auto;"/>' +
+            '<span class="prop-list prop-list--sm">' +
+            '' +
+              '<span class="prop-list__item prop-list__item--stream"></span>' +
+              '</span>' +
+              ' </span>' +
+              '<span class="card-item__description">' +
+              '<span class="card-item__name">' +
+              "<span>Центр йоги и здоровья на Достоевской при Московском Университете йоги</span>"+
+              '</span>' +
+              '<span class="prop-list prop-list--right">' +
+              '<span class="prop-list__item prop-list__item--rating">4.75</span>' +
+              '<span class="prop-list__item prop-list__item--repost">1</span>' +
+              '<span class="prop-list__item prop-list__item--views">4</span>' +
+              '</span>' +
+              '</span>' +
+              '</a>' +
+              '</div>';
+
+          google.maps.event.addListener(marker[32], 'click', (function (marker, contentString,infowindow) {
+            return function () {
+
+              infowindow.setContent(contentString);
+              infowindow.open(map, marker[32]);
+            };
+          })(marker, contentString, infowindow));
+
+          google.maps.event.addListener(marker[32], 'mouseover', function () {
+            this.setIcon(markerSrcActive);
+          });
+          google.maps.event.addListener(marker[32], 'mouseout', function () {
+            this.setIcon(markerSrc);
+          });
+
+
+          loc = new google.maps.LatLng("55.49078", "37.302812");
+          latlngbounds.extend(loc);
+
+          google.maps.event.addListener(infowindow, 'domready', function() {
+
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+            iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+            iwOuter.parent().parent().css({left: '0'});
+            iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').find('div').children().css({'display' : 'none'});
+            var iwCloseBtn = iwOuter.next();
+
+            iwCloseBtn.css({'right' : '-336px', 'top' : '54px'});
+            if($('.iw-content').height() < 140){
+              $('.iw-bottom-gradient').css({display: 'none'});
+            }
+            iwCloseBtn.mouseout(function(){
+              $(this).css({opacity: '1'});
+            });
+          });				
+
+          marker[29] = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            position: {lat:55.7858692, lng:37.5615387},
+            visible: true,
+            optimized: false,
+            icon: {
+              url: markerSrc,
+              scaledSize: new google.maps.Size(markerWidth, markerHeight)
+            }
+          });
+
+          var contentString = '<div class="map-baloon" style="font-family: PT Sans;">' +
+            '<a href="/club/moskva/golds-gym-dinamo" class="card-item card-item--sm card-item--accent card-item--map">' +
+            '<span class="card-item__image">' +
+            '<img src="/uploads/images/clubs/29/29-small.jpg" srcset="/uploads/images/clubs/29/29-small.jpg 2x" class="card-item__img" style="width:auto; height: 75px; margin: 0 auto;"/>' +
+            '<span class="prop-list prop-list--sm">' +
+            '' +
+              '<span class="prop-list__item prop-list__item--stream"></span>' +
+              '</span>' +
+              ' </span>' +
+              '<span class="card-item__description">' +
+              '<span class="card-item__name">' +
+              "<span>Gold’s Gym Dinamo</span>"+
+              '</span>' +
+              '<span class="prop-list prop-list--right">' +
+              '<span class="prop-list__item prop-list__item--rating">4.75</span>' +
+              '<span class="prop-list__item prop-list__item--repost">1</span>' +
+              '<span class="prop-list__item prop-list__item--views">3</span>' +
+              '</span>' +
+              '</span>' +
+              '</a>' +
+              '</div>';
+
+          google.maps.event.addListener(marker[29], 'click', (function (marker, contentString,infowindow) {
+            return function () {
+
+              infowindow.setContent(contentString);
+              infowindow.open(map, marker[29]);
+            };
+          })(marker, contentString, infowindow));
+
+          google.maps.event.addListener(marker[29], 'mouseover', function () {
+            this.setIcon(markerSrcActive);
+          });
+          google.maps.event.addListener(marker[29], 'mouseout', function () {
+            this.setIcon(markerSrc);
+          });
+
+
+          loc = new google.maps.LatLng("55.7858692", "37.5615387");
+          latlngbounds.extend(loc);
+
+          google.maps.event.addListener(infowindow, 'domready', function() {
+
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+            iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+            iwOuter.parent().parent().css({left: '0'});
+            iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').find('div').children().css({'display' : 'none'});
+            var iwCloseBtn = iwOuter.next();
+
+            iwCloseBtn.css({'right' : '-336px', 'top' : '54px'});
+            if($('.iw-content').height() < 140){
+              $('.iw-bottom-gradient').css({display: 'none'});
+            }
+            iwCloseBtn.mouseout(function(){
+              $(this).css({opacity: '1'});
+            });
+          });				
+
+          marker[42] = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            position: {lat:55.8099143, lng:37.4828754},
+            visible: true,
+            optimized: false,
+            icon: {
+              url: markerSrc,
+              scaledSize: new google.maps.Size(markerWidth, markerHeight)
+            }
+          });
+
+          var contentString = '<div class="map-baloon" style="font-family: PT Sans;">' +
+            '<a href="/club/moskva/fit-n-fight" class="card-item card-item--sm card-item--accent card-item--map">' +
+            '<span class="card-item__image">' +
+            '<img src="/uploads/images/clubs/42/42-small.jpg" srcset="/uploads/images/clubs/42/42-small.jpg 2x" class="card-item__img" style="width:auto; height: 75px; margin: 0 auto;"/>' +
+            '<span class="prop-list prop-list--sm">' +
+            '' +
+              '<span class="prop-list__item prop-list__item--stream"></span>' +
+              '</span>' +
+              ' </span>' +
+              '<span class="card-item__description">' +
+              '<span class="card-item__name">' +
+              "<span>Fit'N'Fight</span>"+
+              '</span>' +
+              '<span class="prop-list prop-list--right">' +
+              '<span class="prop-list__item prop-list__item--rating">4.75</span>' +
+              '<span class="prop-list__item prop-list__item--repost">0</span>' +
+              '<span class="prop-list__item prop-list__item--views">3</span>' +
+              '</span>' +
+              '</span>' +
+              '</a>' +
+              '</div>';
+
+          google.maps.event.addListener(marker[42], 'click', (function (marker, contentString,infowindow) {
+            return function () {
+
+              infowindow.setContent(contentString);
+              infowindow.open(map, marker[42]);
+            };
+          })(marker, contentString, infowindow));
+
+          google.maps.event.addListener(marker[42], 'mouseover', function () {
+            this.setIcon(markerSrcActive);
+          });
+          google.maps.event.addListener(marker[42], 'mouseout', function () {
+            this.setIcon(markerSrc);
+          });
+
+
+          loc = new google.maps.LatLng("55.8099143", "37.4828754");
+          latlngbounds.extend(loc);
+
+          google.maps.event.addListener(infowindow, 'domready', function() {
+
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+            iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+            iwOuter.parent().parent().css({left: '0'});
+            iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').find('div').children().css({'display' : 'none'});
+            var iwCloseBtn = iwOuter.next();
+
+            iwCloseBtn.css({'right' : '-336px', 'top' : '54px'});
+            if($('.iw-content').height() < 140){
+              $('.iw-bottom-gradient').css({display: 'none'});
+            }
+            iwCloseBtn.mouseout(function(){
+              $(this).css({opacity: '1'});
+            });
+          });				
+
+          marker[28] = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            position: {lat:55.7478024, lng:37.7155997},
+            visible: true,
+            optimized: false,
+            icon: {
+              url: markerSrc,
+              scaledSize: new google.maps.Size(markerWidth, markerHeight)
+            }
+          });
+
+          var contentString = '<div class="map-baloon" style="font-family: PT Sans;">' +
+            '<a href="/club/moskva/indance" class="card-item card-item--sm card-item--accent card-item--map">' +
+            '<span class="card-item__image">' +
+            '<img src="/uploads/images/clubs/28/28-small.jpg" srcset="/uploads/images/clubs/28/28-small.jpg 2x" class="card-item__img" style="width:auto; height: 75px; margin: 0 auto;"/>' +
+            '<span class="prop-list prop-list--sm">' +
+            '' +
+              '<span class="prop-list__item prop-list__item--stream"></span>' +
+              '</span>' +
+              ' </span>' +
+              '<span class="card-item__description">' +
+              '<span class="card-item__name">' +
+              "<span>INDANCE</span>"+
+              '</span>' +
+              '<span class="prop-list prop-list--right">' +
+              '<span class="prop-list__item prop-list__item--rating">4.75</span>' +
+              '<span class="prop-list__item prop-list__item--repost">0</span>' +
+              '<span class="prop-list__item prop-list__item--views">3</span>' +
+              '</span>' +
+              '</span>' +
+              '</a>' +
+              '</div>';
+
+          google.maps.event.addListener(marker[28], 'click', (function (marker, contentString,infowindow) {
+            return function () {
+
+              infowindow.setContent(contentString);
+              infowindow.open(map, marker[28]);
+            };
+          })(marker, contentString, infowindow));
+
+          google.maps.event.addListener(marker[28], 'mouseover', function () {
+            this.setIcon(markerSrcActive);
+          });
+          google.maps.event.addListener(marker[28], 'mouseout', function () {
+            this.setIcon(markerSrc);
+          });
+
+
+          loc = new google.maps.LatLng("55.7478024", "37.7155997");
+          latlngbounds.extend(loc);
+
+          google.maps.event.addListener(infowindow, 'domready', function() {
+
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+            iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+            iwOuter.parent().parent().css({left: '0'});
+            iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').find('div').children().css({'display' : 'none'});
+            var iwCloseBtn = iwOuter.next();
+
+            iwCloseBtn.css({'right' : '-336px', 'top' : '54px'});
+            if($('.iw-content').height() < 140){
+              $('.iw-bottom-gradient').css({display: 'none'});
+            }
+            iwCloseBtn.mouseout(function(){
+              $(this).css({opacity: '1'});
+            });
+          });				
+
+          marker[33] = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            position: {lat:55.6421701, lng:37.6036906},
+            visible: true,
+            optimized: false,
+            icon: {
+              url: markerSrc,
+              scaledSize: new google.maps.Size(markerWidth, markerHeight)
+            }
+          });
+
+          var contentString = '<div class="map-baloon" style="font-family: PT Sans;">' +
+            '<a href="/club/moskva/spirit-fitness" class="card-item card-item--sm card-item--accent card-item--map">' +
+            '<span class="card-item__image">' +
+            '<img src="/uploads/images/clubs/33/33-small.jpg" srcset="/uploads/images/clubs/33/33-small.jpg 2x" class="card-item__img" style="width:auto; height: 75px; margin: 0 auto;"/>' +
+            '<span class="prop-list prop-list--sm">' +
+            '' +
+              '<span class="prop-list__item prop-list__item--stream"></span>' +
+              '</span>' +
+              ' </span>' +
+              '<span class="card-item__description">' +
+              '<span class="card-item__name">' +
+              "<span>Spirit.Fitness</span>"+
+              '</span>' +
+              '<span class="prop-list prop-list--right">' +
+              '<span class="prop-list__item prop-list__item--rating">4.75</span>' +
+              '<span class="prop-list__item prop-list__item--repost">0</span>' +
+              '<span class="prop-list__item prop-list__item--views">3</span>' +
+              '</span>' +
+              '</span>' +
+              '</a>' +
+              '</div>';
+
+          google.maps.event.addListener(marker[33], 'click', (function (marker, contentString,infowindow) {
+            return function () {
+
+              infowindow.setContent(contentString);
+              infowindow.open(map, marker[33]);
+            };
+          })(marker, contentString, infowindow));
+
+          google.maps.event.addListener(marker[33], 'mouseover', function () {
+            this.setIcon(markerSrcActive);
+          });
+          google.maps.event.addListener(marker[33], 'mouseout', function () {
+            this.setIcon(markerSrc);
+          });
+
+
+          loc = new google.maps.LatLng("55.6421701", "37.6036906");
+          latlngbounds.extend(loc);
+
+          google.maps.event.addListener(infowindow, 'domready', function() {
+
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+            iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+            iwOuter.parent().parent().css({left: '0'});
+            iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').find('div').children().css({'display' : 'none'});
+            var iwCloseBtn = iwOuter.next();
+
+            iwCloseBtn.css({'right' : '-336px', 'top' : '54px'});
+            if($('.iw-content').height() < 140){
+              $('.iw-bottom-gradient').css({display: 'none'});
+            }
+            iwCloseBtn.mouseout(function(){
+              $(this).css({opacity: '1'});
+            });
+          });				
+
+          marker[43] = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            position: {lat:55.7031312, lng:37.6233522},
+            visible: true,
+            optimized: false,
+            icon: {
+              url: markerSrc,
+              scaledSize: new google.maps.Size(markerWidth, markerHeight)
+            }
+          });
+
+          var contentString = '<div class="map-baloon" style="font-family: PT Sans;">' +
+            '<a href="/club/moskva/w-fit" class="card-item card-item--sm card-item--accent card-item--map">' +
+            '<span class="card-item__image">' +
+            '<img src="/uploads/images/clubs/43/43-small.jpg" srcset="/uploads/images/clubs/43/43-small.jpg 2x" class="card-item__img" style="width:auto; height: 75px; margin: 0 auto;"/>' +
+            '<span class="prop-list prop-list--sm">' +
+            '' +
+              '<span class="prop-list__item prop-list__item--stream"></span>' +
+              '</span>' +
+              ' </span>' +
+              '<span class="card-item__description">' +
+              '<span class="card-item__name">' +
+              "<span>W-Fit</span>"+
+              '</span>' +
+              '<span class="prop-list prop-list--right">' +
+              '<span class="prop-list__item prop-list__item--rating">4.5</span>' +
+              '<span class="prop-list__item prop-list__item--repost">0</span>' +
+              '<span class="prop-list__item prop-list__item--views">6</span>' +
+              '</span>' +
+              '</span>' +
+              '</a>' +
+              '</div>';
+
+          google.maps.event.addListener(marker[43], 'click', (function (marker, contentString,infowindow) {
+            return function () {
+
+              infowindow.setContent(contentString);
+              infowindow.open(map, marker[43]);
+            };
+          })(marker, contentString, infowindow));
+
+          google.maps.event.addListener(marker[43], 'mouseover', function () {
+            this.setIcon(markerSrcActive);
+          });
+          google.maps.event.addListener(marker[43], 'mouseout', function () {
+            this.setIcon(markerSrc);
+          });
+
+
+          loc = new google.maps.LatLng("55.7031312", "37.6233522");
+          latlngbounds.extend(loc);
+
+          google.maps.event.addListener(infowindow, 'domready', function() {
+
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+            iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+            iwOuter.parent().parent().css({left: '0'});
+            iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').find('div').children().css({'display' : 'none'});
+            var iwCloseBtn = iwOuter.next();
+
+            iwCloseBtn.css({'right' : '-336px', 'top' : '54px'});
+            if($('.iw-content').height() < 140){
+              $('.iw-bottom-gradient').css({display: 'none'});
+            }
+            iwCloseBtn.mouseout(function(){
+              $(this).css({opacity: '1'});
+            });
+          });				
+
+          marker[51] = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            position: {lat:55.788185, lng:37.510701},
+            visible: true,
+            optimized: false,
+            icon: {
+              url: markerSrc,
+              scaledSize: new google.maps.Size(markerWidth, markerHeight)
+            }
+          });
+
+          var contentString = '<div class="map-baloon" style="font-family: PT Sans;">' +
+            '<a href="/club/moskva/centr-indijskoj-kul-tury" class="card-item card-item--sm card-item--accent card-item--map">' +
+            '<span class="card-item__image">' +
+            '<img src="/uploads/images/clubs/51/51-small.jpg" srcset="/uploads/images/clubs/51/51-small.jpg 2x" class="card-item__img" style="width:auto; height: 75px; margin: 0 auto;"/>' +
+            '<span class="prop-list prop-list--sm">' +
+            '' +
+              '<span class="prop-list__item prop-list__item--stream"></span>' +
+              '</span>' +
+              ' </span>' +
+              '<span class="card-item__description">' +
+              '<span class="card-item__name">' +
+              "<span>Центр Индийской культуры </span>"+
+              '</span>' +
+              '<span class="prop-list prop-list--right">' +
+              '<span class="prop-list__item prop-list__item--rating">4.5</span>' +
+              '<span class="prop-list__item prop-list__item--repost">0</span>' +
+              '<span class="prop-list__item prop-list__item--views">2</span>' +
+              '</span>' +
+              '</span>' +
+              '</a>' +
+              '</div>';
+
+          google.maps.event.addListener(marker[51], 'click', (function (marker, contentString,infowindow) {
+            return function () {
+
+              infowindow.setContent(contentString);
+              infowindow.open(map, marker[51]);
+            };
+          })(marker, contentString, infowindow));
+
+          google.maps.event.addListener(marker[51], 'mouseover', function () {
+            this.setIcon(markerSrcActive);
+          });
+          google.maps.event.addListener(marker[51], 'mouseout', function () {
+            this.setIcon(markerSrc);
+          });
+
+
+          loc = new google.maps.LatLng("55.788185", "37.510701");
+          latlngbounds.extend(loc);
+
+          google.maps.event.addListener(infowindow, 'domready', function() {
+
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+            iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+            iwOuter.parent().parent().css({left: '0'});
+            iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').find('div').children().css({'display' : 'none'});
+            var iwCloseBtn = iwOuter.next();
+
+            iwCloseBtn.css({'right' : '-336px', 'top' : '54px'});
+            if($('.iw-content').height() < 140){
+              $('.iw-bottom-gradient').css({display: 'none'});
+            }
+            iwCloseBtn.mouseout(function(){
+              $(this).css({opacity: '1'});
+            });
+          });				
+
+          marker[27] = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            position: {lat:55.7194522, lng:37.6714534},
+            visible: true,
+            optimized: false,
+            icon: {
+              url: markerSrc,
+              scaledSize: new google.maps.Size(markerWidth, markerHeight)
+            }
+          });
+
+          var contentString = '<div class="map-baloon" style="font-family: PT Sans;">' +
+            '<a href="/club/moskva/akson" class="card-item card-item--sm card-item--accent card-item--map">' +
+            '<span class="card-item__image">' +
+            '<img src="/uploads/images/clubs/27/27-small.jpg" srcset="/uploads/images/clubs/27/27-small.jpg 2x" class="card-item__img" style="width:auto; height: 75px; margin: 0 auto;"/>' +
+            '<span class="prop-list prop-list--sm">' +
+            '' +
+              '<span class="prop-list__item prop-list__item--stream"></span>' +
+              '</span>' +
+              ' </span>' +
+              '<span class="card-item__description">' +
+              '<span class="card-item__name">' +
+              "<span>Аксон </span>"+
+              '</span>' +
+              '<span class="prop-list prop-list--right">' +
+              '<span class="prop-list__item prop-list__item--rating">3.75</span>' +
+              '<span class="prop-list__item prop-list__item--repost">1</span>' +
+              '<span class="prop-list__item prop-list__item--views">4</span>' +
+              '</span>' +
+              '</span>' +
+              '</a>' +
+              '</div>';
+
+          google.maps.event.addListener(marker[27], 'click', (function (marker, contentString,infowindow) {
+            return function () {
+
+              infowindow.setContent(contentString);
+              infowindow.open(map, marker[27]);
+            };
+          })(marker, contentString, infowindow));
+
+          google.maps.event.addListener(marker[27], 'mouseover', function () {
+            this.setIcon(markerSrcActive);
+          });
+          google.maps.event.addListener(marker[27], 'mouseout', function () {
+            this.setIcon(markerSrc);
+          });
+
+
+          loc = new google.maps.LatLng("55.7194522", "37.6714534");
+          latlngbounds.extend(loc);
+
+          google.maps.event.addListener(infowindow, 'domready', function() {
+
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+            iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+            iwOuter.parent().parent().css({left: '0'});
+            iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').find('div').children().css({'display' : 'none'});
+            var iwCloseBtn = iwOuter.next();
+
+            iwCloseBtn.css({'right' : '-336px', 'top' : '54px'});
+            if($('.iw-content').height() < 140){
+              $('.iw-bottom-gradient').css({display: 'none'});
+            }
+            iwCloseBtn.mouseout(function(){
+              $(this).css({opacity: '1'});
+            });
+          });				
+
+          marker[52] = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            position: {lat:55.7716645, lng:37.5936235},
+            visible: true,
+            optimized: false,
+            icon: {
+              url: markerSrc,
+              scaledSize: new google.maps.Size(markerWidth, markerHeight)
+            }
+          });
+
+          var contentString = '<div class="map-baloon" style="font-family: PT Sans;">' +
+            '<a href="/club/moskva/shpagat-vdvojne" class="card-item card-item--sm card-item--accent card-item--map">' +
+            '<span class="card-item__image">' +
+            '<img src="/uploads/images/clubs/52/52-small.jpg" srcset="/uploads/images/clubs/52/52-small.jpg 2x" class="card-item__img" style="width:auto; height: 75px; margin: 0 auto;"/>' +
+            '<span class="prop-list prop-list--sm">' +
+            '' +
+              '<span class="prop-list__item prop-list__item--stream"></span>' +
+              '</span>' +
+              ' </span>' +
+              '<span class="card-item__description">' +
+              '<span class="card-item__name">' +
+              "<span>Шпагат Вдвойне</span>"+
+              '</span>' +
+              '<span class="prop-list prop-list--right">' +
+              '<span class="prop-list__item prop-list__item--rating">2.75</span>' +
+              '<span class="prop-list__item prop-list__item--repost">0</span>' +
+              '<span class="prop-list__item prop-list__item--views">2</span>' +
+              '</span>' +
+              '</span>' +
+              '</a>' +
+              '</div>';
+
+          google.maps.event.addListener(marker[52], 'click', (function (marker, contentString,infowindow) {
+            return function () {
+
+              infowindow.setContent(contentString);
+              infowindow.open(map, marker[52]);
+            };
+          })(marker, contentString, infowindow));
+
+          google.maps.event.addListener(marker[52], 'mouseover', function () {
+            this.setIcon(markerSrcActive);
+          });
+          google.maps.event.addListener(marker[52], 'mouseout', function () {
+            this.setIcon(markerSrc);
+          });
+
+
+          loc = new google.maps.LatLng("55.7716645", "37.5936235");
+          latlngbounds.extend(loc);
+
+          google.maps.event.addListener(infowindow, 'domready', function() {
+
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+            iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+            iwOuter.parent().parent().css({left: '0'});
+            iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+            iwBackground.children(':nth-child(3)').find('div').children().css({'display' : 'none'});
+            var iwCloseBtn = iwOuter.next();
+
+            iwCloseBtn.css({'right' : '-336px', 'top' : '54px'});
+            if($('.iw-content').height() < 140){
+              $('.iw-bottom-gradient').css({display: 'none'});
+            }
+            iwCloseBtn.mouseout(function(){
+              $(this).css({opacity: '1'});
+            });
+          });				
+
+        var bounds = new google.maps.LatLngBounds();
+        map.setCenter(latlngbounds.getCenter());
+        map.fitBounds(latlngbounds);
+
+        $('.map__nav--plus').on('click', function () {
+          map.setZoom(map.getZoom() + 1);
+        });
+        $('.map__nav--minus').on('click', function () {
+          map.setZoom(map.getZoom() - 1);
+        });
+
+          }

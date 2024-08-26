@@ -1,0 +1,31 @@
+mixin rating(name)
+  +b.rating
+    +e.container
+      form
+        for item in [5,4,3,2,1]
+          +e.INPUT.input(type='radio', name=name, value=item id=name+'-'+item)
+          +e.LABEL.item(for=name+'-'+item)
+            +icon('ic-star-outline','__icon --empty')
+            +icon('ic-star','__icon --filled')
+        input(type="hidden")
+
+      +e.note
+        +e.value
+
+mixin rating-ext(name)
+  +b.rating
+    +e.container
+      form
+        for item in [5,4,3,2,1]
+          - var half = (item - 0.5)
+          - var halfName = String(half).replace('.','-')
+          +e.INPUT.input(type='radio', name=name value=item id=name+'-'+item)
+          +e.LABEL.item(for=name+'-'+item)
+            +icon('ic-star','__icon --filled')
+            +icon('ic-star-outline','__icon --empty')
+          +e.INPUT.input(type='radio', name=name value=half id=name+'-'+halfName).--half
+          +e.LABEL.item(for=name+'-'+halfName).--half
+            +icon('ic-star-half','__icon --half')
+        input(type="hidden")
+      +e.note
+        +e.value

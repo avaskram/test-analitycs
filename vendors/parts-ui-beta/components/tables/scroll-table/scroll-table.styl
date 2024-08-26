@@ -1,0 +1,62 @@
+///// scroll table
+.{$theme}-scroll-table
+  margin-bottom 20px
+
+  &__container
+    overflow hidden
+    position relative
+    padding-left 126px
+    display inline-block
+    max-width 100%
+
+  &__inner
+    overflow-x auto
+    overflow-y hidden
+    position static
+
+
+  table
+    margin-bottom 0
+    td,
+  	th
+      white-space nowrap
+      height 62px
+      vertical-align middle
+
+      +first()
+        position: absolute
+        left: 0
+        top: auto
+        height 2000px
+        min-width 126px
+        width 126px
+
+        +before()
+          position absolute;
+          left 0
+          right 0
+          height 62px
+          top 0
+          opacity .1
+          box-shadow 4px 0 10px alpha(#000,.5)
+          pointer-events none
+
+    th
+      +first()
+        padding-top 23px
+    td
+      background-color #fff
+      border-top $border
+      width 100px
+
+    tfoot
+      td
+        background-color $l-gray
+        +first()
+          +after()
+            background-color $l-gray
+            height 10px
+            top 62px
+            position absolute
+            left 0
+            right 0

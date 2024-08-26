@@ -1,0 +1,17 @@
+mixin svg(vb)
+  +b.SVG(xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewbox="0 0 "+vb)&attributes(attributes)
+    if block
+      block
+        
+        
+mixin path(path,fill)
+  +e.PATH(d=path fill=fill fill-rule="evenodd")&attributes(attributes)
+  
+//- mixin svg-responsive(vb)
+//-   +b.SVG(xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewbox="0 0 "+vb)&attributes(attributes)
+//-     if block
+//-       block
+        
+        
+//- mixin svg-path(path,fill)
+//-   +e.PATH(d=path fill=fill fill-rule="evenodd")&attributes(attributes)

@@ -1,0 +1,11 @@
+mixin thumb(title,image,text)
+	+b.A.thumb&attributes(attributes)
+		+e.bg
+			+bg-image(image)
+		if title != ''
+			+e.content
+				+e.title= title
+				
+		if text != '' & text != undefined
+			+e.note
+				+e.text= note

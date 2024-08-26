@@ -1,0 +1,85 @@
+mixin article()
+  +b.article
+    +e.item.--image
+      +row('parts-2 parts-space')
+        +col()
+          +lazy("https://images.unsplash.com/photo-1519120126473-8be7aedcd6c6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a55332dfc236b13f118ef77a36b4052f&auto=format&fit=crop&w=3300&q=80",imagesTempDir+"lazy-placeholder-01.jpg")
+        +col()
+          +lazy("https://images.unsplash.com/photo-1531258932533-1ecc042f713a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5c060456302b94ec3f00ed512968bd1f&auto=format&fit=crop&w=3300&q=80",imagesTempDir+"lazy-placeholder-02.jpg")
+          
+    +e.item.--text
+      +code('--dark')
+        pre
+          code.html.
+            &lt;div class=&quot;parts-lazy&quot; data-lazy=&quot;путь к картинке&quot;&gt;
+              &lt;img class=&quot;parts-lazy__image&quot; src=&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=&quot;/&gt;
+              &lt;img class=&quot;parts-lazy__placeholder&quot; src=&quot;путь к заглушке&quot; alt=&quot;&quot; role=&quot;presentation&quot;  alt=&quot;&quot;/&gt;
+            &lt;/div&gt;
+            
+      h1 Heading h1
+      p Simlpe parapgraph. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      p.text-lg Class 
+        strong text-lg
+        |  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+      p.text-md Parapgraph medium. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+      p.text-sm Parapgraph small. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+      p.text-xs Parapgraph x-small. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+
+      h2 Heading H2
+      p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus maxime commodi officia, labore odio cum repudiandae illum autem laudantium, sequi ratione ea alias, dolor molestias minima ut modi rem adipisci.
+
+      p 
+        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident temporibus recusandae porro iure modi voluptatibus fugit dolorem doloremque rerum optio nemo laboriosam quasi harum sit pariatur reiciendis, distinctio quia deleniti excepturi quidem quos aliquid sapiente totam fuga repellat! Eos hic nesciunt consectetur rem reprehenderit aperiam voluptates perspiciatis, praesentium! Illo, odio.
+
+      p 
+        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident temporibus recusandae porro iure modi voluptatibus fugit dolorem doloremque rerum optio nemo laboriosam quasi harum sit pariatur reiciendis, distinctio quia deleniti excepturi quidem quos aliquid sapiente totam fuga repellat! Eos hic nesciunt consectetur rem reprehenderit aperiam voluptates perspiciatis, praesentium! Illo, odio.
+
+      ol
+        li  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos natus fugiat rem optio maxime assumenda atque id, quaerat repudiandae maiores qui soluta quis porro ratione earum officiis laborum velit repellendus!
+        li  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        li  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo harum ratione, sequi obcaecati fuga
+
+    +e.item.--image
+      +row('parts-2 parts-space')
+        +col()
+          +lazy("https://images.unsplash.com/photo-1519120126473-8be7aedcd6c6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a55332dfc236b13f118ef77a36b4052f&auto=format&fit=crop&w=3300&q=80",imagesTempDir+"lazy-placeholder-01.jpg")(class="--bg")
+          span.text-code --bg
+        +col()
+          +lazy("https://images.unsplash.com/photo-1531258932533-1ecc042f713a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5c060456302b94ec3f00ed512968bd1f&auto=format&fit=crop&w=3300&q=80",imagesTempDir+"lazy-placeholder-02.jpg")(class="--blur")
+          span.text-code --blur
+        +col('part-collapse')
+          +lazy("https://images.unsplash.com/photo-1531303814030-5636aa5d6452?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a6691de175fc2b218598f40c23fd1e14&auto=format&fit=crop&w=1950&q=80",imagesTempDir+"lazy-placeholder-03.jpg")(class="--bg --blur")
+          span.text-code --bg blur
+
+
+    +e.item.--text
+      h2 Heading H2
+      p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus maxime commodi officia, labore odio cum repudiandae illum autem laudantium, sequi ratione ea alias, dolor molestias minima ut modi rem adipisci.
+      p 
+        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident temporibus recusandae porro iure modi voluptatibus fugit dolorem doloremque rerum optio nemo laboriosam quasi harum sit pariatur reiciendis, distinctio quia deleniti excepturi quidem quos aliquid sapiente totam fuga repellat! Eos hic nesciunt consectetur rem reprehenderit aperiam voluptates perspiciatis, praesentium! Illo, odio.
+
+      p 
+        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident temporibus recusandae porro iure modi voluptatibus fugit dolorem doloremque rerum optio nemo laboriosam quasi harum sit pariatur reiciendis, distinctio quia deleniti excepturi quidem quos aliquid sapiente totam fuga repellat! Eos hic nesciunt consectetur rem reprehenderit aperiam voluptates perspiciatis, praesentium! Illo, odio.
+      table
+        tr
+          th Table Heading
+          th Table Heading
+          th Table Heading
+        tr
+          td Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          td Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          td Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      ol
+        li  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos natus fugiat rem optio maxime assumenda atque id, quaerat repudiandae maiores qui soluta quis porro ratione earum officiis laborum velit repellendus!
+        li  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        li  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo harum ratione, sequi obcaecati fuga
+      +lazy("https://images.unsplash.com/photo-1515334651527-87d92cb011ec?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0c9ad6bc4cd733274af66b2269ddc32b&auto=format&fit=crop&w=2100&q=80",imagesTempDir+"lazy-placeholder.jpg")(class="--bg --blur")
+
+      h3 H3 Heading
+      p This level of demand for Festy requires a full team of highly skilled developers dedicated solely on this project in order to scale effectively so we can launch our MVP for beta testing.
+
+      ul
+        li Lorem ipsum dolor sit amet
+        li Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        li Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

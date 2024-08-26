@@ -1,0 +1,67 @@
+//
+// .{$theme}-tooltip
+// 	&--top
+// 	  +child-el(section)
+// 	    dropdown-arrow-bottom($root-size,($root-size/2),#fff)
+// 	    translated(0,-1*($root-size))
+//
+// 	  for bg in $colors.base
+// 	    +add-mod(bg)
+// 	      +child-el(section)
+// 					bg-{bg}()
+// 	        &:after
+// 	          border-top-color $+(bg)+(-color)
+//
+// 	//   // +add-mod(dark)
+// 	//   //   +child-el(section)
+// 	//
+// 	//   //     &:after
+// 	//   //       border-top-color $dark
+// 	//
+// 	// &--bottom
+// 	//   +child-el(section)
+// 	//     dropdown-arrow-top($root-size,($root-size/2),#fff)
+// 	//     translated(0,$root-size)
+// 	//
+// 	//   for bg in $colors.base
+// 	//     +add-mod(bg)
+// 	//       +child-el(section)
+// 	//         &:after
+// 	//           border-bottom-color $+(bg)+(-color)
+// 	//
+// 	//   +add-mod(dark)
+// 	//     +child-el(section)
+// 	//       &:after
+// 	//         border-bottom-color $dark
+// 	//
+// 	// &--left
+// 	//   +child-el(section)
+// 	//     dropdown-arrow-right(($root-size/2),$root-size,#fff)
+// 	//     translated(-1*$root-size,0)
+// 	//
+// 	//   for bg in $colors.base
+// 	//     +add-mod(bg)
+// 	//       +child-el(section)
+// 	//         &:after
+// 	//           border-left-color $+(bg)+(-color)
+// 	//
+// 	//   +add-mod(dark)
+// 	//     +child-el(section)
+// 	//       &:after
+// 	//         border-left-color $dark
+// 	//
+// 	// &--right
+// 	//   +child-el(section)
+// 	//     dropdown-arrow-left(($root-size/2),$root-size,#fff)
+// 	//     translated($root-size,0)
+// 	//
+// 	//   for bg in $colors.base
+// 	//     +add-mod(bg)
+// 	//       +child-el(section)
+// 	//         &:after
+// 	//           border-right-color $+(bg)+(-color)
+// 	//
+// 	//   +add-mod(dark)
+// 	//     +child-el(section)
+// 	//       &:after
+// 	//         border-right-color $dark

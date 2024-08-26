@@ -1,0 +1,41 @@
+//// contacts
++theme(table-list)
+  text-align left
+  margin-bottom $rem-lg
+  clear-margin-bottom()
+
+  &__item
+    table()
+    margin-clear-bottom()
+    margin-bottom $rem
+    position relative
+
+  &__name
+  &__value
+    table-cell()
+    width 50%
+
+  &__name
+    position relative
+    +before()
+      position absolute
+      left 0
+      height 1px
+      bottom 2px
+      background-color $gray-border
+      width 200%
+    +child-el(text)
+      padding-right $rem-xs
+
+  &__value
+    color $base-color
+    text-align right
+
+    +child-el(text)
+      padding-left $rem-xs
+
+      
+  &__text
+    background-color #fff
+    position relative
+    inline-block-bottom()

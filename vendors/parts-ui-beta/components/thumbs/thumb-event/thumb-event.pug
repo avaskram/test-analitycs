@@ -1,0 +1,27 @@
+mixin thumb-event(image,name,day,month,times,city,place,page,ticket,price)
+	+b.thumb.--event
+		+e.image
+			+bg-set(image)
+		+e.content
+			+e.title
+				+e.name= name
+				+e.description
+					+e.info= city
+					+e.subinfo= place
+			+e.date-item
+				+e.date
+					+e.day= day
+					+e.month= month
+				+e.moreinfo= times
+
+			+e.tickets
+				span.text-xs.text-space Билеты: &nbsp;
+				span.text-medium.text-xs.text-space $&nbsp;
+				span.text-sm.text-space-md.text-medium!= price
+
+			if page != ""
+				+e.A(href=page+".html").link
+			else
+				+e.A(href=ticket target="_blank").link
+			+e.btn
+				+btn('--styled --xs --theme',ticket)(target="_blank") Купить билет

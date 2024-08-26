@@ -1,0 +1,31 @@
++theme(clipboard)
+  overflow visible
+
+  &:before
+    text-h3()
+    text-color-base()
+    centering-y()
+    position absolute
+    left 1rem
+
+  &__tooltip
+    text-sm()
+    invisible()
+    translated(0,-3px)
+    position absolute
+    top 100%
+    margin-top .3rem
+    left 0
+    text-align center
+    background-color alpha(#000,.6)
+    border-radius $radius-xs
+    color #fff
+    white-space nowrap
+    display block
+    padding .3rem .5rem
+    line-height 1.5
+    transition opacity .2s ease 0s, transform .2s ease 0s
+
+  +active()
+    +child-el(tooltip)
+      visible-transform()

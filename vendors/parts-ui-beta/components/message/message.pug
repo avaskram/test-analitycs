@@ -1,0 +1,8 @@
+mixin message(mod)
+  - modifier = ''
+  if mod != undefined & mod != ''
+    - modifier = mod
+    
+  +b.message(class=modifier)&attributes(attributes)
+    if block
+      block

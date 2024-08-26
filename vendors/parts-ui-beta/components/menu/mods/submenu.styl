@@ -1,0 +1,17 @@
++theme(submenu)
+  invisible()
+  translated(0,3px)
+  position absolute
+  top 100%
+  text-align left
+  left 0
+
+  &__link
+    display block
+    position relative
+
++theme(menu)
+  &__item
+    &:hover
+      +theme(submenu)
+        visible-transform()

@@ -1,0 +1,43 @@
++theme(p404)
+  flex-row-md-center()
+  text-align center
+  min-height 100%
+  background-position center center
+  background-repeat no-repeat
+
+  img
+    margin-x(auto)
+
+  &__container
+    container-default()
+    container-md()
+    padding $container-padding
+    width 100%
+
+  &__content
+    margin-x(auto)
+    flex-col-center()
+
+  &__name
+    title-base()
+    font-size ($rem-lead*2)
+
+  &__title
+    title-base()
+    margin-bottom $text-indent
+    clear-margin-bottom()
+
+  &__text
+    margin-y($text-indent)
+    clear-margin-y()
+    +text-style()
+      text-base()
+
+  &__link
+    margin-top $text-indent
+
+  &__note
+    text-color-gray()
+    text-sm()
+    margin-bottom $text-indent
+    clear-margin-bottom()

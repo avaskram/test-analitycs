@@ -1,0 +1,51 @@
++theme(counter)
+  &__title
+    text-sm()
+    inline-block()
+    padding-left 1.4rem
+    padding-right 1.4rem
+    text-align right
+    position relative
+    margin-bottom 0rem
+    text-align right
+    position relative
+
+    +after()
+      centering-y()
+      background-color #dee1e6
+      width 1rem
+      height 1px
+      left 100%
+      margin-left -8px
+
+  &__container
+    padding-top 0.31rem
+    display block
+
+  &__item
+    inline-block()
+    font-bold()
+    margin-left 5px
+
+  &__value
+    inline-block()
+    width 28px
+    padding-right 3px
+    text-align right
+
+
+  +media(md)
+    &__title
+      padding-left 0
+      padding-right 0
+      text-base()
+
+      &:after
+        display none
+
+    &__item
+      text-xl()
+
+    &__container
+      margin-top 1rem
+      display block

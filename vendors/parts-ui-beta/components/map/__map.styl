@@ -1,0 +1,30 @@
++theme(map)
+  &__panel
+    &--bottom
+      fullsize-bottom()
+      padding-bottom 2rem
+
+  &__zoom
+    circle-border(50px,1px,$theme-color)
+    position relative
+    transition opacity .15s ease 0s
+    cursor pointer
+    &--in
+      css-icon-plus(14px,2px,$theme-color)
+    &--out
+      css-icon-minus(14px,2px,$theme-color)
+      margin-top 1rem
+    &:hover
+      background-color alpha($theme-color,.1)
+
+    media-hide(lg)
+
+  &__canvas
+    &--dark
+      background-color $bg-dark
+
+
+  &--fullscreen
+    fullsize()
+    +child-el(canvas)
+      fullsize()

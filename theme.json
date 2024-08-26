@@ -1,0 +1,19 @@
+{
+	"theme": {
+		"name": "Test",
+		"classNames": {
+			"active": "active",
+			"inactive": "inactive"
+		},
+		"prefix": "",
+		"files": {
+			"name": "test"
+		},
+		"directories": {
+			"fonts": "../fonts/",
+			"images": "./images/",
+			"css": "./css/",
+			"js": "./js/"
+		}
+	}
+}

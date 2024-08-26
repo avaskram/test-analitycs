@@ -1,0 +1,41 @@
++theme(input)
+  user-select none
+
+  &--counter
+    flex-row-md()
+    input
+      padding-x(0)
+      text-center()
+      pointer-events none
+
+
+    +add-mod(dark)
+      +child-el(button)
+        &--plus
+        &--minus
+          &:after
+          &:before
+            bg-light()
+    +add-mod(rounded)
+      +child-el(button)
+        margin-x(5px)
+
+  &__button
+    position absolute
+    display block
+    cursor pointer
+    opacity .5
+    height 100%
+    width 2rem
+
+    &--plus
+      css-icon-plus(10px,2px,$base-color)
+      right 0
+
+    &--minus
+      css-icon-minus(10px,2px,$base-color)
+      left 0
+
+
+
+    hover-visible()

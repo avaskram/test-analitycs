@@ -1,0 +1,17 @@
+
++theme(list)
+  &__item
+    flex-row()
+    line-height $line-height-base
+
+  &__title
+    title()
+    text-h4()
+  &__text
+    flex 1
+  &__icon
+    flex 0
+    text-h1()
+    +
+      +child-el(content)
+        padding-left $rem

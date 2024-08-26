@@ -1,0 +1,9 @@
+mixin table-list()
+  +b.table-list
+    
+mixin table-list-item(name,value)
+  +e.item
+    +e.name
+      +e.SPAN.text= name
+    +e.value
+      +e.SPAN.text= value

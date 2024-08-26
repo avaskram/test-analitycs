@@ -1,0 +1,75 @@
++theme(accordeon)
+  &__item
+    position relative
+    border-gray-bottom()
+    clear-border-bottom()
+    clear-margin-bottom()
+    user-select none
+
+    +active()
+      +child-el(content)
+        visible-transform()
+        height auto
+        overflow visible
+
+      +child-el(icon)
+        animation-rotate(toggleIconIn,.5s,180deg)
+        animation-timing-function $quint
+        will-change transform
+
+        &:after
+          invisible()
+          transition opacity .1s ease 0s
+
+    +first()
+      padding-top unit(($size-h2/2) + $rem-px)
+
+  &--indent
+    +child-el(icon)
+      left auto
+      right 100%
+      margin-right unit(2rem + 2*($rem-px))
+
+
+  &__icon
+    css-icon-plus(1em,2px,$theme-color)
+    margin-left (1em/2)
+    animation-rotate(toggleIconOut,.3s,-180deg)
+    translated(0,0)
+    animation-timing-function $quint
+
+    &:after
+      visible()
+      transition opacity .2s $quint 0.05s
+
+  &__heading
+    flex-row()
+    position relative
+    padding-bottom $size-h3
+    padding-top $size-h2
+    cursor pointer
+
+  &__title
+    text-medium()
+    text-font-title()
+    text-color-base()
+    line-height $line-height-base
+    transition transform .2s ease 0s
+    transform-origin left center
+    position relative
+    flex 1
+    margin-left $size-h4
+
+
+  &__content
+    height 0
+    overflow hidden
+    translated(0,5px)
+    invisible()
+    transition-opacity-transform(.34s)
+    transition-delay 0s
+    padding-left $size-h3
+
+  &__text
+    padding-bottom $size-h3
+    padding-left 5px

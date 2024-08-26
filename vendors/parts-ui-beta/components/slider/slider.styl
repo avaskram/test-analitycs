@@ -1,0 +1,39 @@
++theme(slider)
+	position relative
+
+	&--dark
+		bg-dark()
+
+	&--visible
+		slick-visible()
+
+	&__container
+		position relative
+		display block
+
+	&--shift
+		+child-el(container)
+			transition transform .5s ease 0s
+			will-change transform
+			transform-reset()
+
+	&--shift-left
+		+child-el(container)
+			translated(-30px,0)
+
+	&--shift-right
+		+child-el(container)
+			translated(30px,0)
+
+	&__list
+		position relative
+
+	&__item
+		position relative
+		height auto
+		padding-top 0
+
+	&__bg
+		bg-dark()
+		bg-cover()
+		padding-bottom $proportions[rect]

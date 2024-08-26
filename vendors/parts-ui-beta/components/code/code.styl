@@ -1,0 +1,157 @@
+//// customize hightlightsjs
+@require 'highlights'
+
++theme(code)
+  position relative
+  pre,
+  code
+    overflow hidden
+    display block
+
+  code
+    border-radius $card-radius
+
+  &:after
+    radius-base()
+    fullsize-right()
+    width 140px
+    pointer-events none
+
+  &--dark
+    parts-ui-code-dark()
+    // atom-one-dark-hljs()
+
+    code
+      bg-dark()
+
+
+    +child-el(clipboard)
+      color #fff
+
+    +
+      +theme(code)
+        &--dark
+          border-alpha-top(1px,#fff,.1)
+
+
+  &--light
+    // github-hljs()
+    // github-gist-hljs()
+    // atom-one-light-hljs()
+    parts-ui-code-light()
+
+    +child-el(clipboard)
+      color $base-color
+
+    +
+      +theme(code)
+        &--light
+          border-alpha-top(1px,$dark,.1)
+
+  .hljs
+    padding $rem-lg
+    display block
+    line-height $line-height-base
+    position relative
+    padding-right 100px
+    clear-margin-y()
+    text-medium()
+    radius-base()
+    text-sm()
+    text-font-code()
+
+  &__clipboard
+    transition-opacity(.15s)
+    transform-reset()
+    invisible()
+    position absolute
+    right 0
+    top 0
+    padding 1rem
+    font-size $size-h5
+    cursor pointer
+    z-index 1
+
+
+
+    &--success
+      visible-transform()
+      +child-el(success)
+        visible()
+        opacity .94
+        transform translate3d(-50%,0,0)
+
+    touch-visible()
+
+  &__cb-icon
+    opacity .5
+    transition-opacity-transform(.2s)
+
+  &__success
+    position absolute
+    display block
+    radius-xs()
+    text-sm()
+    text-color-base()
+    invisible()
+    transition-opacity-transform(.15s)
+    text-bold()
+    bg-warning()
+    transform translate3d(-50%,-5px,0)
+    top 100%
+    left 50%
+    margin-top -15px
+    text-align center
+    box-shadow $shadow
+    line-height $line-height-base
+    padding .3rem .5rem
+    white-space nowrap
+
+  &:hover
+    +child-el(clipboard)
+      visible()
+      &:hover
+        +child-el(cb-icon)
+          opacity: .88
+
+
+
+  &--sm
+    .hljs
+      padding $rem-sm
+      radius-sm()
+      text-xs()
+      text-regular()
+
+.text-code
+  position relative
+  text-font-code()
+  text-demi()
+  text-md()
+  padding-x(.3em)
+  text-color-base()
+  background-color $gray-x-light
+  padding-bottom .1em
+  border-radius $radius-xs
+  white-space nowrap
+  box-shadow 0 1px 3px -3px alpha(#000,.6)
+  border 1px solid alpha($base-color,.08)
+
+  // +before()
+  //   fullsize()
+  //   transform translateZ(0) rotate(0.000001deg)
+  //   border 1px solid $base-color
+  //   border-radius $radius-xs
+  //   pointer-events none
+  //   opacity .08
+
+  $message-name = message
+
+  if $theme != ''
+    $message-name = $theme+(-$message-name)
+  .{$message-name}:not(.{$message-name}--quote) &
+    text-fill(alpha($bg-dark,.1),$base-color)
+
+  for size in xs sm md lg xl xxl
+    &.text-{size}
+      text-{size}()

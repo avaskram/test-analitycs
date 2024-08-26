@@ -1,0 +1,83 @@
++theme(article)
+  &__item
+    margin-y(4rem)
+    clear-margin-y()
+
+
+    &--text
+      container-base()
+      container-md()
+      content-styles()
+
+
+    &--image
+      container-base()
+      container-default()
+
+      +media(lg)
+        container-compact()
+
+    &--blockquote
+      container-base()
+      container-default()
+      padding-x(4rem)
+      padding-y(2rem)
+      text-xl()
+      background-color $theme-color
+      color #fff
+      font-weight 500
+
+    &--slider
+      container-base()
+      container-default()
+
+  &__image
+    margin-y(5rem)
+
+  &__figure
+    margin-x(0)
+
+  &__figcaption
+    margins-y(.5rem)
+    container-base()
+    container-md()
+    text-md()
+    text-color-gray()
+    text-italic()
+    clear-margin-y()
+    display block
+
+
++theme(card)
+  &--article
+    position relative
+    box-shadow none
+
+    +before()
+      fullsize-top()
+      height 400px
+      box-shadow 0 0 30px alpha($bg-dark,.3)
+
+    +after()
+      gradient-light-bottom()
+      height 440px
+      position absolute
+      top 3rem
+      position-x(-1*$container-padding)
+
+    >
+      +child-el(section)
+        position relative
+        margin-top -6rem
+        z-index 1
+
+    +media(lg)
+      >
+        +child-el(content)
+          padding 2rem
+
+      +theme("container &")
+        margin-x($container-padding)
+        &:before
+        &:after
+          display none

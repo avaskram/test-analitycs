@@ -1,0 +1,133 @@
+extends ../layout/default
+block page
+  +b.HEADER.header
+    +e.container
+      +e.A(href="#").logo
+        img(src=imagesDir+"logo.svg", alt="")
+      +menu()
+      +e.signup
+        +b.BUTTON.button.--secondary Sign UP
+      +menu().--mobile
+        +b.BUTTON.button.--secondary Sign UP
+        +e.close
+          +icon('ic-close')
+    +b.burger
+      +icon('ic-burger')
+      
+  +b.main
+    +bg(imagesDir+'main-bg.svg')
+    +e.bottom
+    +e.container
+      +e.image.--mobile
+        +img(imagesDir+'main-screen-mobile','png')
+      +e.content
+        +e.H1.title Monitor your business on real-time dashboard
+        +e.text
+          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum nisi aliquet volutpat pellentesque volutpat est. Sapien in etiam vitae nibh nunc mattis imperdiet sed nullam. 
+        +b.A(href="#").button.__button Try for free
+      +e.image
+        
+        img(src=imagesDir+'main-screen.svg', alt="")
+        
+  +b.SECTION.section#features
+    +e.container
+      +e.H2.title Main Features
+      +e.text
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum nisi aliquet volutpat pellentesque volutpat est. Sapien in etiam vitae nibh nunc mattis imperdiet sed nullam. Vitae et, tortor pulvinar risus pulvinar sit amet. Id vel in nam malesuada.
+      +b.features
+        +e.item
+          +img-el(imagesDir+'icon-clock','png').icon
+          +e.content
+            +e.title Monitoring 24/7
+            +e.text
+              p Lorem ipsum dolor sit amet, consectetur adipis cing elit. Elementum nisi aliquet volutpat.
+        +e.item
+          +img-el(imagesDir+'icon-pc','png').icon
+          +e.content
+            +e.title Widget System
+            +e.text
+              p Sapien in etiam vitae nibh nunc mattis imperdiet sed nullam. Vitae et, tortor pulvinar risus pulvinar.
+        +e.item
+          +img-el(imagesDir+'icon-rocket','png').icon
+          +e.content
+            +e.title Best Performance
+            +e.text
+              p Lorem ipsum dolor sit amet, consectetur adipis cing elit. Elementum nisi aliquet volutpat.
+      +b.form#registration
+        +e.image
+          +img(imagesDir+'map','png')
+        +e.content
+          +e.title Registration
+          
+          +e.field
+            +e.LABEL.label Name *
+            +e.input.parts-input
+              input(type="text" name="name" placeholder="Full Name *").js-input-focus
+          
+          +e.field
+            +e.LABEL.label Departement *
+            +e.input
+              select(name="departement" placeholder="Please Select" data-placeholder="Please Select").parts-select
+                option(value="")
+                option(value="Lorem ipsum 1") Lorem ipsum 1
+                option(value="Lorem ipsum 2") Lorem ipsum 2
+                option(value="Lorem ipsum 3") Lorem ipsum 3
+                option(value="Lorem ipsum 4") Lorem ipsum 4
+                option(value="Lorem ipsum 5") Lorem ipsum 5
+                
+          +e.field
+            +e.LABEL.label Email address *
+            +e.input.parts-input
+              input(type="email" name="email" placeholder="example@gmail.com").js-input-focus
+              
+          +e.field
+            +e.LABEL.label Phone
+            +e.input.parts-input
+              input(type="tel" name="phone" placeholder="Phone number").js-input-focus.js-input-phone
+            
+          +e.submit
+            +b.BUTTON(type="submit").button.__button Sign Up
+            
+  +b.SECTION.section.--bottom#pricing
+    +e.top
+    +bg(imagesDir+'bottom-bg.svg')
+    +e.container
+      +e.title Pricing Plans
+      +e.text
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum nisi aliquet volutpat pellentesque volutpat est.
+      +b.pricing
+        //- +e.list
+        +e.item
+          +e.title Starter
+          +e.text up to 3 users
+          +e.line
+          +e.value $29
+          +e.note per month
+          +b.A(href="#").button.--secondary.__button Order
+        +e.item.--highlight
+          +e.title Standard
+          +e.text up to 20 users
+          +e.line
+          +e.value $99
+          +e.note per month
+          +b.A(href="#").button.--primary.__button Order
+        +e.item
+          +e.title Premium
+          +e.text up to 200 users
+          +e.line
+          +e.value $299
+          +e.note per month
+          +b.A(href="#").button.--secondary.__button Order
+          
+      +b.FOOTER.footer
+        +e.logo
+          img(src=imagesDir+'logo-footer.svg', alt="")
+        +menu()
+        +b.socials
+          +e.A(href="#").item
+            +icon('ic-facebook')
+          +e.A(href="#").item
+            +icon('ic-twitter')
+          +e.A(href="#").item
+            +icon('ic-instagram')
+        

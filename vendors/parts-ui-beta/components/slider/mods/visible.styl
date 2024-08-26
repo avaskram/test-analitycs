@@ -1,0 +1,23 @@
++theme(slider)
+	&--visible
+		overflow hidden
+		slick-visible()
+
+		+child-el(item)
+			position relative
+			invisible()
+			.slick-active &
+			&.slick-active
+				visible()
+
+	&--contain
+		+child-el(container)
+			container-base()
+			container-default()
+			
+			&--sm
+				container-sm()
+			&--md
+				container-md()
+			&--lg
+				container-lg()

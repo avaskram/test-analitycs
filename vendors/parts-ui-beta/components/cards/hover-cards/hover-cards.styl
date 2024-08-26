@@ -1,0 +1,244 @@
++theme(cards)
+  position relative
+
+  &__container
+    display flex
+    align-items center
+    justify-content center
+    flex-wrap nowrap
+    width 100%
+
+  &__item
+    box-shadow 0 5px 30px alpha(#000,.3)
+    display flex
+    flex-direction column
+    flex 1
+    margin-right .5rem
+    margin-left .5rem
+    position relative
+    overflow hidden
+    border-radius 6px
+    margin-clear-x()
+    height auto
+    font-size 0
+
+    img
+      transform translateZ(0) scale(1) rotate(0.000001deg)
+      backface-visibility hidden
+      display block
+      position relative
+
+    +after()
+      position fixed
+
+
+  +media-mob(lg)
+    &__container
+      transform translateZ(0.00001px) scale(.96) rotate(0.000001deg)
+      transition transform .88s $ease-out-quint 0.0001s
+      will-change transform
+      z-index 1
+      backface-visibility hidden
+      transform-style preserve-3d
+
+
+    &__item
+      backface-visibility hidden
+      transform-style preserve-3d
+      will-change: transform
+      transition transform .88s $ease-out-quint 0s
+
+      &:nth-child(1)
+        transform translate3d(30%,0,0.00002px) scale(0.9555)
+        z-index 2
+
+      &:nth-child(2)
+        transform translate3d(0,0,0.00004px) scale(1)
+        z-index 3
+
+      &:nth-child(3)
+        transform translate3d(-30%,0,0.00003px)  scale(0.9555)
+        z-index 2
+
+
+    .content-section--examples:hover &
+      &__container
+        transform translateZ(0.00001px) scale(1) rotate(0.000001deg)
+        transition transform .7777s $ease-out-quint 0s
+
+      &__item
+        transition transform .555555s $ease-out-circ 0s
+
+        &:nth-child(1)
+          transform translate3d(25%,0,0.00002px) scale(0.96)
+
+        &:nth-child(2)
+          transform translate3d(0%,0,0.00004px) scale(1)
+
+        &:nth-child(3)
+          transform translate3d(-25%,0,0.00003px) scale(0.96)
+
+        &:hover
+          transition transform .34s $ease-out-back 0s
+          box-shadow 0 0px 50px alpha(#000,.5)
+          z-index 5
+
+          &:nth-child(1)
+            transform translate3d(12%,0,0.00006px) scale(1.05)
+
+          &:nth-child(2)
+            transform translate3d(0%,0,0.00006px) scale(1.08)
+
+          &:nth-child(3)
+            transform translate3d(-12%,0,0.00006px) scale(1.05)
+
+
+
+        &--inactive
+          &:nth-child(2)
+            transform translate3d(0,0,0.00004px) scale(0.968)
+
+    &--n4
+      +child-el(container)
+        margin-left 2rem
+        margin-right -3rem
+        transform-origin left center
+
+      +child-el(item)
+        &:nth-child(1)
+          transform translate3d(25%,0,0.00004px) scale(1) rotate(0.000001deg)
+          z-index 4
+        &:nth-child(2)
+          transform translate3d(0%,0,0.00003px) scale(0.98) rotate(0.000001deg)
+          z-index 3
+        &:nth-child(3)
+          transform translate3d(-25%,0,0.00002px) scale(0.96) rotate(0.000001deg)
+          z-index 2
+        &:nth-child(4)
+          transform translate3d(-50%,0,0.00001px) scale(0.94) rotate(0.000001deg)
+          z-index 1
+
+
+
+
+      .content-section--examples:hover &
+        &__container
+          transform translateZ(0.00001px) scale(1)
+          transition transform .88888s $ease-out-quint 0s
+
+        +child-el(item)
+          transition transform .55s $ease-out-circ 0s
+          &:nth-child(1)
+            transform translate3d(10%,0,0.00004px) scale(1.02) rotate(0.000001deg)
+          &:nth-child(2)
+            transform translate3d(-5%,0,0.00003px) scale(1) rotate(0.000001deg)
+          &:nth-child(3)
+            transform translate3d(-20%,0,0.00002px) scale(0.98) rotate(0.000001deg)
+          &:nth-child(4)
+            transform translate3d(-40%,0,0.00001px) scale(0.96) rotate(0.000001deg)
+
+          &:hover
+            transition transform .355555s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s
+            box-shadow 0 0px 50px alpha(#000,.5)
+
+            &:nth-child(1)
+              transform translate3d(20%,0,0.00006px) scale(1.12) rotate(0.000001deg)
+              ~
+                +child-el(item)
+                  &:nth-child(2)
+                    transform translate3d(-10%,0,0.00005px) scale(0.96) rotate(0.000001deg)
+                    z-index 4
+
+                  &:nth-child(3)
+                    transform translate3d(-45%,0,0.00004px) scale(0.9) rotate(0.000001deg)
+                    z-index 3
+
+                  &:nth-child(4)
+                    transform translate3d(-90%,0,0.00003px) scale(0.84) rotate(0.000001deg)
+                    z-index 2
+
+            &:nth-child(2)
+              transform translate3d(0%,0,0.00005px) scale(1.12) rotate(0.000001deg)
+              ~
+                +child-el(item)
+                  &:nth-child(3)
+                    transform translate3d(-30%,0,0.00004px) scale(0.9) rotate(0.000001deg)
+                    z-index 3
+
+                  &:nth-child(4)
+                    transform translate3d(-70%,0,0.00003px) scale(0.84) rotate(0.000001deg)
+                    z-index 2
+
+
+            &:nth-child(3)
+              transform translate3d(-15%,0,0.00006px) scale(1.12) rotate(0.000001deg)
+
+            &:nth-child(4)
+              transform translate3d(-45%,0,0.00007px) scale(1.12) rotate(0.000001deg)
+
+          &--inactive
+            &:nth-child(1)
+              transform translate3d(35%,0,0.00002px) scale(0.9) rotate(0.000001deg)
+              z-index 2
+              +
+                +child-el(item)
+                  &--inactive
+                    z-index 3
+                    +
+                      +child-el(item)
+                        &--inactive
+                          z-index 4
+
+            &:nth-child(2)
+              transform translate3d(0%,0,0.00003px) scale(0.96) rotate(0.000001deg)
+              z-index 4
+
+
+    &--it3
+      +child-el(item)
+        &--inactive
+          &:nth-child(1)
+            transform translate3d(60%,0,0.00002px) scale(0.9) rotate(0.000001deg) !important
+
+          &:nth-child(2)
+            transform translate3d(15%,0,0.00003px) scale(0.96) rotate(0.000001deg) !important
+
+          &:nth-child(4)
+            transform translate3d(-60%,0,0.00003px) scale(0.84) rotate(0.000001deg) !important
+
+    &--it4
+      +child-el(item)
+        &--inactive
+          &:nth-child(1)
+            transform translate3d(80%,0,0.00002px) scale(0.9) rotate(0.000001deg) !important
+          &:nth-child(2)
+            transform translate3d(30%,0,0.00003px) scale(0.96) rotate(0.000001deg) !important
+          &:nth-child(3)
+            transform translate3d(-15%,0,0.00004px) scale(0.98) rotate(0.000001deg) !important
+
+
+  +media(md)
+
+    margin-left -1rem
+    margin-right -1rem
+
+
+    &__container
+      scroll-wrap()
+      min-width 0
+      padding-bottom 1rem
+      width auto
+      padding-left 1rem
+      padding-right 2rem
+      justify-content flex-start
+      align-items baseline
+
+      +after()
+        min-width 1rem
+        width 1rem
+        flex 1
+        height 10px
+
+    &__item
+      min-width 280px
+      box-shadow none

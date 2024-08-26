@@ -1,0 +1,12 @@
+mixin map-canvas(id)
+  +e.canvas(id=id)&attributes(attributes)
+mixin map-zoom()
+  +e.container
+    +e.zoom.--in
+    +e.zoom.--out
+mixin map-panel(mod)
+  - var modifier = ''
+  if mod != undefined & mod != ''
+    - modifier = mod
+  +e.panel(class=modifier)&attributes(attributes)
+    block

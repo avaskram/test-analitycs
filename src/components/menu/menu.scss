@@ -1,0 +1,13 @@
+@mixin menu {
+  &__menu {
+		display: flex;
+		gap: 36px;
+	}
+	&__link {
+		color: $color-text;
+		transition: color .2s ease 0s;
+		&:hover {
+			color: #fff;
+		}
+	}
+}

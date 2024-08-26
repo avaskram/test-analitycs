@@ -1,0 +1,13 @@
+mixin pages-list-page()
+  +section('--fullscreen --gray')
+    +container('--md')
+      +b.card.--shadow
+        +e.section
+          block
+
+mixin pages-list(items)
+  +pages-list-page()
+    +b.UL.pages-list
+      for item in items
+        +e.LI.item
+          +e.A.link(href=item target="_blank")= item

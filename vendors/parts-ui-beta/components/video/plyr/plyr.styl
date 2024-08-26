@@ -1,0 +1,40 @@
+.plyr
+  &__poster
+    background-position center center
+    background-size cover
+    background-repeat no-repeat
+
+    +after()
+      background-image embedurl('../assets/svg/play-icon.svg','svg')
+      square(100px)
+      position absolute
+      left 50%
+      top 50%
+      margin-top -25px
+      margin-left -25px
+      transition transform .5s ease 0s
+
+    +before()
+      opacity .7
+      background-color #171717
+      fullsize()
+
+  &--paused
+    .plyr__poster
+      opacity 1
+
+  &--playing
+    .plyr__poster
+      opacity 0
+
+
+  &--full-ui
+    max-height 680px
+
+  &__video-embed
+    cursor pointer
+    padding-bottom 45% !important
+
+    &:hover
+      .plyr__poster
+        &:after

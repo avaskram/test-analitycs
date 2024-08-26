@@ -1,0 +1,13 @@
+mixin tooltip-item(mod)
+	- var modifier = ''
+	if mod != '' & mod != undefined
+		- modifier = mod
+	+e.SPAN.item(class=mod)
+		+e.SPAN.section&attributes(attributes)
+			if block
+				block
+
+mixin tooltip()
+	+b.SPAN.tooltip
+		if block
+			block

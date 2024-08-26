@@ -1,0 +1,53 @@
+
++theme(loader)
+  &--blur
+    fullsize()
+    overflow hidden
+    pointer-events none
+    transform-reset()
+    animate-performance()
+    
+    +child-el(image)
+      filter-blur(20)
+      transition opacity 1s ease .5s, filter .8s ease .5s
+      will-change opacity, filter
+
+      +page-load()
+        opacity 0
+        filter-unblur()
+
+  
+  &__color
+    opacity 1
+    transition opacity 1.1s ease .5s
+    will-change: opacity;
+    fullsize()
+    +page-load()
+      background-color #0d0d0d
+      opacity 0
+
+  &__image
+    fullsize()
+    bg-cover()
+
+
+.main-show-element
+  opacity 0
+  transition-opacity-transform(.5s)
+
+  +page-load()
+    opacity 1
+    transform-reset()
+
+  &--el1
+    transition-delay 0s
+    transition-duration .8s
+    scaled(0.94)
+
+  &--el2
+    transition-delay .4s
+    scaled(0.94)
+
+  &--el3
+    transition-delay .8s
+    translated(0,5px)

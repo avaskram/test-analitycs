@@ -1,0 +1,13 @@
+//- mixin product-thumb(image,category,title,price,oldPrice)
+//- 	+b.card.--shadow
+//- 		+e.section.--rect.--image(style="background-image: url('"+image+"')")
+//- 			+e.label= category
+//- 		+e.section.--content
+//- 			+e.title.--str2= title
+//- 			+e.price
+//- 				span €
+//- 				span= price
+//- 				if oldPrice != '' & oldPrice != undefined
+//- 					+e.old-price= oldPrice
+//- 			+e.button
+//- 				+btn('--md','#') to cart

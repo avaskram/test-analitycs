@@ -1,0 +1,74 @@
+mixin img(url,format)
+  img(src=url+"."+format, srcset=url+"@2x."+format+" 2x", alt="")&attributes(attributes)
+  
+mixin img-lazy(url,format)
+  img(data-lazy-src=url+"."+format, data-lazy-srcset=url+"@2x."+format+" 2x", data-lazy-image src="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyVpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDAyIDc5LjE2NDM1MiwgMjAyMC8wMS8zMC0xNTo1MDozOCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjEgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OEY5RDZBRUZGQUY2MTFFQ0JBRDNGNUZBQjVEQ0M2RjUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OEY5RDZBRjBGQUY2MTFFQ0JBRDNGNUZBQjVEQ0M2RjUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4RjlENkFFREZBRjYxMUVDQkFEM0Y1RkFCNURDQzZGNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4RjlENkFFRUZBRjYxMUVDQkFEM0Y1RkFCNURDQzZGNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PmjqOV8AAAAQSURBVHjaYvj//z8DQIABAAj8Av7bok0WAAAAAElFTkSuQmCC" alt="")&attributes(attributes)
+    
+mixin img-el(url,format)
+  +e.IMG(src=url+"."+format, srcset=url+"@2x."+format+" 2x", alt="")&attributes(attributes)
+  
+mixin img-el-lazy(url,format)
+  +e.IMG(data-lazy-src=url+"."+format, data-lazy-srcset=url+"@2x."+format+" 2x", data-lazy-image src="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyVpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDAyIDc5LjE2NDM1MiwgMjAyMC8wMS8zMC0xNTo1MDozOCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjEgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OEY5RDZBRUZGQUY2MTFFQ0JBRDNGNUZBQjVEQ0M2RjUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OEY5RDZBRjBGQUY2MTFFQ0JBRDNGNUZBQjVEQ0M2RjUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4RjlENkFFREZBRjYxMUVDQkFEM0Y1RkFCNURDQzZGNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4RjlENkFFRUZBRjYxMUVDQkFEM0Y1RkFCNURDQzZGNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PmjqOV8AAAAQSURBVHjaYvj//z8DQIABAAj8Av7bok0WAAAAAElFTkSuQmCC" alt="")&attributes(attributes)
+    
+mixin img-temp(name,format)
+  img(src=imagesTempDir+name+"."+format, srcset=imagesTempDir+name+"@2x."+format+" 2x", alt="")&attributes(attributes)
+
+mixin img-temp-png(name)
+  img(src=imagesTempDir+name+".png", srcset=imagesTempDir+name+"@2x.png 2x", alt="")&attributes(attributes)
+
+mixin img-temp-jpg(name)
+  img(src=imagesTempDir+name+".jpg", srcset=imagesTempDir+name+"@2x.jpg 2x", alt="")&attributes(attributes)
+
+
+mixin bg-block(color,img,alpha)
+  - var int = "1"
+  if alpha != "" & alpha != undefined
+    - int = alpha
+  +b.bg(style="background-color: "+color+";")&attributes(attributes)
+    if img != undefined
+      +e.image(style="background-image: url('"+img+"'); opacity: "+int+";")
+
+mixin bg(url)
+  - bg = ''
+  if url != undefined & url != ''
+    - bg = "background-image: url("+url+");"
+  +e.bg(style=bg)&attributes(attributes)
+    if block
+      block
+
+mixin bg-set(url,ext,pos)
+  - var format = "jpg"
+  - var position = "center/cover"
+  if ext != undefined
+    - format = ext
+  if pos != undefined
+    - postion = pos
+
+  - var set = "background: no-repeat "+position+" url('"+url+"."+format+"'); background-image: -webkit-image-set(url('"+url+"."+format+"') 1x, url('"+url+"@2x."+format+"') 2x);"
+
+  +e.bg(style=set)&attributes(attributes)
+    if block
+      block
+
+
+mixin bg-image(url)
+  - bg = ''
+  if url != undefined & url != ''
+    - bg = "background-image: url("+url+");"
+  +e.bg-image(style=bg)&attributes(attributes)
+    if block
+      block
+
+mixin bg-image-set(url,ext,pos)
+  - var format = "jpg"
+  - var position = "center/cover"
+  if ext != undefined
+    - format = ext
+  if pos != undefined
+    - position = pos
+
+  - var set = "background: no-repeat "+position+" url('"+url+"."+format+"'); background-image: -webkit-image-set(url('"+url+"."+format+"') 1x, url('"+url+"@2x."+format+"') 2x);"
+
+  +e.image(style=set)&attributes(attributes)
+    if block
+      block

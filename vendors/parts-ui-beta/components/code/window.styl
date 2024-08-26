@@ -1,0 +1,38 @@
+/// card like mac os window
++theme(card)
+  &--window
+    bg-dark()
+    position relative
+    box-shadow 0 3px 5px -3px alpha(#000,.8)
+    border-radius $card-radius
+    margin-top 0
+
+    > i
+      &,
+      &:before
+      &:after
+        circle(13px)
+        position absolute
+
+      background-color #f96160
+      left 10px
+      top 11px
+      display block
+
+      +before()
+        background-color #fdbf4e
+        left 20px
+
+      +after()
+        background-color #3dc550
+        left 41px
+
+    +theme(code)
+      .hljs
+        padding-y($rem-h2)
+    +child-el(section)
+      padding 32px 5px 5px 5px
+      background-color transparent
+
+    +media(md)
+      margin-x(0)

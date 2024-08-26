@@ -1,0 +1,15 @@
++theme(crumbs)
+  flex-row()
+  text-sm()
+  &__item
+    clear-margin-right()
+    padding-right $rem-lg
+    position relative
+  &__link
+    position relative
+    display block
+    +css-icon-angle-right(5px,1px,$gray,45deg)
+      right auto
+      left 100%
+      margin-left ($rem-lg/2)
+      opacity .5

@@ -1,0 +1,17 @@
+mixin socials-list(items)
+  +b.socials&attributes(attributes)
+    +row()
+      for item,i in items
+        +col()
+          +e.A(href=item).link
+            +e.icon
+              +icon('ic-'+i)
+              
+mixin social-link(icon,mod,name)
+  if name != undefined
+    +e.A.link(href="/" class=mod)&attributes(attributes)
+      +icon(icon,'--left')
+      | name
+  else
+    +e.A.link(href="/" class=mod)&attributes(attributes)
+      +icon(icon)

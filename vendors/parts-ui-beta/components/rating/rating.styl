@@ -1,0 +1,150 @@
++theme(rating)
+  flex-row-md()
+  +theme(icon)
+    display block
+  &__input
+    invisible()
+    square(0px)
+    position absolute
+    left 0
+    top 0
+    &:checked
+      +
+        +child-el(item)
+          +child-el(icon)
+            &--filled
+              visible()
+
+      ~
+        +child-el(item)
+          +child-el(icon)
+            &--filled
+              visible()
+
+
+    &--half
+      &:checked
+        +
+          +child-el(item)
+            &--half
+              +child-el(icon)
+                visible()
+
+  &__container
+    position relative
+    &:hover
+      +child-el(item)
+        +child-el(icon)
+          &--half
+            invisible()
+
+        &--half
+          &:hover
+            +child-el(icon)
+              visible()
+        +child-el(icon)
+          &--filled
+            invisible()
+
+        &:hover
+          ~
+            +child-el(input)
+              &,
+              &:checked
+                ~
+                  +child-el(item)
+                    +child-el(icon)
+                      visible()
+                +
+                  +child-el(item)
+                    +child-el(icon)
+                      visible()
+
+
+          ~
+            +child-el(item)
+              +child-el(icon)
+                &--filled
+                  visible()
+
+
+          +child-el(icon)
+            &--filled
+              visible()
+
+
+  &__item
+    float right
+    display block
+    cursor pointer
+    font-size 0
+    position relative
+    square(2rem)
+    clear-padding-right()
+    clear-padding-left()
+    hard-width(2rem)
+
+    &--half
+      hard-width(2rem)
+      margin-x(-1rem)
+      overflow hidden
+      +child-el(icon)
+        left 100%
+
+
+      &:hover
+        +child-el(icon)
+          visible()
+          &--filled
+            visible()
+
+
+  &__icon
+    text-color-warning()
+    margin-x(auto)
+    centering-position(2rem,2rem)
+    transition none
+
+    &--half
+    &--filled
+      invisible()
+
+
+
+  &__note
+    position absolute
+    padding-left $size-lead + $size-h4
+    overflow hidden
+    left 100%
+    height: 100%
+    margin-left 1rem
+
+    +before()
+      line-x(1px,$gray-light)
+      width $size-lead
+      position absolute
+      top 50%
+      left 0
+      translated(-100%,0,0)
+      transition transform .3s $quint 0s
+
+  &__value
+    position relative
+    transition transform .34s $quart 0.0s, opacity .3s ease 0.0s
+    height 100%
+    flex-col-md()
+    transform translate3d(-1rem,0,0)
+    text-base()
+    text-demi()
+    text-color-gray()
+    invisible()
+    line-height $line-height-base
+
+
+  &--selected
+    +child-el(note)
+      &:before
+        transform-reset()
+
+    +child-el(value)
+      visible-transform()

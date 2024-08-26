@@ -1,0 +1,16 @@
+mixin video(image,text,url)
+	+b.video&attributes(attributes)
+		+e.container.js-video-play
+			+bg-image(image)
+			+e.inner
+				+e.play
+				if text != ''
+					+e.text= text    
+		iframe(src=url frameborder="0" allowfullscreen)
+
+
+mixin video-local(path)
+	video&attributes(attributes)
+		source(src=path+".webm" type="video/webm;")
+		source(src=path+".mp4" type="video/mp4;")
+		

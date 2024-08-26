@@ -1,0 +1,12 @@
+mixin group(mod)
+  - var modifier = ''
+  - var name = 'group'
+  
+  if theme.prefix != '' || theme.prefix != undefined
+    - name = theme.prefix+'-'+name
+    
+  if mod != undefined
+    - modifier = " "+name+mod
+  DIV(class=name+modifier)&attributes(attributes)
+    if block
+      block

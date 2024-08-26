@@ -1,0 +1,7 @@
+mixin indent(mod)
+  if mod != undefined
+    +b.indent(class=mod)&attributes(attributes)
+      block
+  else
+    +b.indent&attributes(attributes)
+      block

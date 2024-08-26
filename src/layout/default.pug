@@ -1,0 +1,63 @@
+include includes
+doctype
+html(lang="en-US" xmlns:og="http://ogp.me/ns#")
+  block head
+    head
+      block metaUX
+        +meta-ux()
+        
+      block pageTitle
+        title= theme.name
+        
+      block metaContent
+        meta(property="og:type", content="website")
+        meta(property="og:title", content=theme.name)
+        meta(name="twitter:title", content=theme.name)
+
+        //- if content.head.description != undefined
+        //-   meta(name="description", content=content.head.description)
+        //-   meta(property="og:description", content=content.head.description)
+        //- 
+        //- if content.head.image.url != undefined
+        //-   meta(name="twitter:card" content="summary_large_image")
+        //-   meta(property="og:image", content=content.head.image.url)
+        //-   meta(name="twitter:image", content=content.head.image.url)
+        //- 
+        //- if content.head.counters.yandex.verification != undefined
+        //-   meta(name="yandex-verification" content=content.head.counters.yandex.verification)
+
+      block favicon
+        +favicon()
+        //- +favicon-safari()
+        
+      block styles
+        //- style
+        //-   include /styles/critical/css/home.css
+        //- +styles-defer(themeFile+'.min')
+        +styles(themeFile+'.min','dynamic')
+
+      //- block ifie
+      //-   +ifie()
+      block counters
+        //- +ym-counter(content.head.counters.yandex.counter)
+      //- 
+      //-   if content.head.counters.google.id != undefined
+      //-     +gtag-counter(content.head.counters.google.id)
+
+
+  block body
+    block bodyClasses
+      - bodyClasses = ''
+
+    block pageClasses
+      - pageClasses = ''
+
+    body(class=bodyClasses)
+      block sprite
+        include ../assets/icons/sprite.svg
+
+      block page
+        
+      block scripts
+        +jquery-google()
+        +script(themeFile+'.min')

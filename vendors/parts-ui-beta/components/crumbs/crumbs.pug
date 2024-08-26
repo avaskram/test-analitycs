@@ -1,0 +1,36 @@
+mixin crumbs-link(name)
+  +e.item
+    +e.A(href="/").link= name
+
+mixin crumbs-current(name)
+  +e.item
+    +e.SPAN.current= name
+
+mixin crumbs(...items)
+  +b.crumbs
+    - var itemsNum = items.length
+    for item,index in items
+      if index != (itemsNum-1)
+        +crumbs-link(item)
+      else
+        +crumbs-current(item)
+        
+mixin breadcrumb-link(name,link)
+  - var target = '/'
+  if link != undefined
+    - target = link
+  +e.item(itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem")
+    +e.A(href=target itemprop="item").link= name
+
+mixin breadcrumb-current(name)
+  +e.item(itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem")
+    +e.SPAN.current= name
+
+mixin breadcrumbs(...items)
+  +b.crumbs(itemscope itemtype="http://schema.org/BreadcrumbList")
+    - var itemsNum = items.length
+    for item,index in items
+      if index != (itemsNum-1)
+        +breadcrumb-link(item)
+      else
+        +breadcrumb-current(item)

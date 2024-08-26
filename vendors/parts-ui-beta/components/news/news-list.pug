@@ -1,0 +1,18 @@
+mixin news-item(day,time,title,text)
+  +b.news-item&attributes(attributes)
+    +e.container
+      +e.inner
+        +row('parts-8')
+          +col('part-2-lg')
+            +e.date
+              +e.day= day
+              +e.time= time
+          +col('part-5 part-6-lg')
+            +e.content
+              +e.title= title
+              +e.text
+                p= text
+                
+      +e.A(href="#").link
+      +e.share
+        +socials-list()

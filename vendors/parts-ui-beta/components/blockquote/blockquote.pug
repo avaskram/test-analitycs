@@ -1,0 +1,8 @@
+mixin blockquote(mod)
+  - var modifier = ''
+  if mod != undefined & mod != ''
+    - modifier = mod
+
+  +b.blockquote(class=mod)&attributes(attributes)
+    if block
+      block

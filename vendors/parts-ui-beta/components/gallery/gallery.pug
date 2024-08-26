@@ -1,0 +1,11 @@
+mixin gallery-item(image,target,title,group)
+	+e.A.item(href=target data-fancybox=group)&attributes(attributes)
+		+e.image
+			+img(image)
+		if title != undefined & title != ''
+			+e.title= title
+			
+mixin gallery-list()
+	+b.gallery
+		if block
+			block

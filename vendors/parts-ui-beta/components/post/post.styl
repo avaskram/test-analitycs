@@ -1,0 +1,23 @@
+.{$theme}-post
+  position relative
+  &__input
+    // background-color $bg-gray
+    min-height $input-size
+    transition all .3s $quint 0s
+
+  &__button
+    margin-top .33rem
+    position absolute
+    invisible()
+    transition-transform(0s)
+    translated(0,15px)
+
+  &--focus
+    +child-el(input)
+      min-height 128px
+
+    +child-el(button)
+      position relative
+      transform none
+      visible()
+      transition-transform(.5s)

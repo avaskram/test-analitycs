@@ -1,0 +1,13 @@
+mixin progressbar(type,fill)
+	+b.progressbar&attributes(attributes)
+		- var mod = ''
+		if type != '' & type != undefined
+			if type == 'line'
+				+e.container
+					+e.line
+						+e.fill(style="width:"+fill)
+						
+			if type == 'steps'
+				+e.container
+					if block
+						block

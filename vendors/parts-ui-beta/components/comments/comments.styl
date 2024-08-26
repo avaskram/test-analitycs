@@ -1,0 +1,57 @@
++theme(comments)
+  margin-top 3.4rem
+  text-base()
+
+  &__item
+    margin-bottom 3.3rem
+    margin-top 2rem
+    position relative
+
+    &--disabled
+      opacity .3
+      pointer-events none
+
+  &__content
+    padding-left 1.8rem
+    position relative
+
+
+  &__status
+    position absolute
+    left 3px
+    top 5px
+    line-height 1
+    text-xs()
+    color $gray-text
+
+
+    +before()
+      border-arrow-up(12px,10px,$gray-element)
+      position absolute
+      left 0
+      bottom 100%
+      margin-bottom 5px
+
+    +after()
+      border-arrow-down(12px,10px,$gray-element)
+      position absolute
+      left 0
+      top 100%
+      margin-top 5px
+
+
+  &__title
+    margin-bottom 1rem
+
+
+  &__name
+    font-weight bold
+    text-base()
+
+  &__times
+    text-sm()
+    color $gray-text
+    margin-left .5rem
+
+  &__text
+    margin-top 1rem

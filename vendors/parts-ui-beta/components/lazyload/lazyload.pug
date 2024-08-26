@@ -1,0 +1,9 @@
+mixin lazy(image,placeholder)
+	- var placeholderMod = ""
+	+b.lazy(data-lazy=image)&attributes(attributes)
+		+e.IMG(alt="", src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=").image
+		if placeholder != undefined
+			+e.IMG(src=placeholder, alt="").placeholder
+		else
+			if block
+				block

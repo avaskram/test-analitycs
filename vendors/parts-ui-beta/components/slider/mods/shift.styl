@@ -1,0 +1,14 @@
++theme(slider)
+  &--shift
+		+child-el(container)
+			transition transform .5s ease 0s
+			will-change transform
+			transform-reset()
+
+	&--shift-left
+		+child-el(container)
+			translated(-30px,0)
+
+	&--shift-right
+		+child-el(container)
+			translated(30px,0)

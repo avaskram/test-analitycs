@@ -1,0 +1,94 @@
++theme(slider)
+	position relative
+
+	&__nav
+		position absolute
+		pointer-events none
+		fullsize()
+		overflow hidden
+
+	&__arrow
+		invisible()
+		fullsize-height()
+		transition opacity .3s ease 0s, transform .3s ease 0s
+		height 100%
+		width 80px
+
+	&__link
+		fullsize-height()
+		invisible()
+		transition opacity .3s ease 0s
+		display block
+		width 20%
+		pointer-events all
+		cursor pointer
+		color #fff
+		overflow hidden
+		z-index 1
+
+		+before()
+			fullsize()
+			transition opacity .5s ease 0s
+			opacity .1
+
+		&--prev
+			left 0
+			+before()
+				gradient-color-left(#000)
+
+			+child-el(arrow)
+				left 1.5rem
+				translated(-5px,0)
+				+css-icon-angle-left(48px,2px,#fff,30deg)
+					left 0
+					transition opacity .3s ease 0s, transform .32s ease 0s
+
+		&--next
+			right 0
+			+before()
+				gradient-color-right(#000)
+
+			+child-el(arrow)
+				right 1.5rem
+				translated(5px,0)
+				+css-icon-angle-right(48px,2px,#fff,30deg)
+					right 0
+					transition opacity .3s ease 0s, transform .32s ease 0s
+
+
+		&:hover
+			&:before
+				opacity .2
+
+	&:hover
+		+child-el(arrow)
+			transform-reset()
+			opacity .5
+			&:after
+			&:before
+				opacity 1
+
+		+child-el(link)
+			visible-transform()
+
+			&:hover
+				+child-el(arrow)
+					opacity .8
+
+			&--prev
+				&:hover
+					+child-el(arrow)
+						translated(5px,0)
+						// &:before
+						// 	transform rotate(24deg) translate3d(0,0,0)
+						//
+						// &:after
+						// 	transform rotate(-24deg) translate3d(0,0,0)
+			&--next
+				&:hover
+					+child-el(arrow)
+						translated(-5px,0)
+						// &:before
+						// 	transform rotate(-24deg) translate3d(0,0,0)
+						// &:after
+						// 	transform rotate(24deg) translate3d(0,0,0)

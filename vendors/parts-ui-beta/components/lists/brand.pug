@@ -1,0 +1,5 @@
+mixin brand-image(image,name)
+  +b.brand-image&attributes(attributes)
+    +img-temp(image,'png')
+    if  name != '' & name != indefined
+      +e.name= name

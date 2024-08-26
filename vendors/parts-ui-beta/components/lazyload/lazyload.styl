@@ -1,0 +1,89 @@
+$lazyLoadSpeed = 1s
+$lazyLoadTransition = transform $lazyLoadSpeed $quint 0.0003s, opacity $lazyLoadSpeed ease 0.0001s
+
++theme(lazy)
+  position relative
+  overflow hidden
+  font-size 0
+  z-index 3
+  transform translate3d(0,0,0)
+
+  &__title
+    padding $card-padding
+    fullsize-left()
+
+  &__image
+    invisible()
+    will-change opacity, filter, transform
+    transition $lazyLoadTransition
+    transform translate3d(0,0,0.00001px) scale(1) rotate(0.000001deg)
+    display block
+    width auto
+    position absolute
+    left 0
+    top 0
+
+  &__placeholder
+    invisible()
+    width 100%
+    height auto
+    display block
+    transform translate3d(0,0,0.00002px) scale(1) rotate(0.000001deg)
+    transition $lazyLoadTransition
+    will-change opacity, transform
+    position relative
+
+  &--blur
+    +child-el(image)
+      filter-blur(10px)
+      z-index 1
+
+    +child-el(placeholder)
+      filter-blur(10px)
+      visible()
+      z-index 2
+
+    +add-mod(loaded)
+      +child-el(placeholder)
+        invisible()
+
+
+  &--bg
+    bg-cover()
+    +after()
+      fullsize()
+      background-color #000
+      z-index 1
+      transition $lazyLoadTransition
+      opacity 1
+
+    +child-el(image)
+      display none
+
+    +child-el(placeholder)
+      opacity .8
+      transition $lazyLoadTransition
+      visible()
+      transition-delay .8s
+
+    +add-mod(loaded)
+      +child-el(placeholder)
+        invisible()
+        transform translate3d(0,0,0.000001px) scale(1) rotate(0.000001deg)
+
+      &:after
+        invisible()
+
+  &--loaded
+    +child-el(image)
+      filter-unblur()
+      visible()
+			transform translate3d(0,0,0.00001px) scale(1) rotate(0.000001deg)
+
+    +child-el(placeholder)
+      invisible()
+      transition filter $lazyLoadSpeed $quint 0.0002s, $lazyLoadTransition
+      transform translate3d(0,0,0) scale(1) rotate(0.000001deg)
+
+    &:after
+      invisible()

@@ -1,0 +1,16 @@
+.{$page-fix}
+  overflow hidden
+
+  +theme(header)
+    transition none
+
+.{$document-without-scroll}
+  &.{$scrollbar-compensate}
+    margin-right 0
+
+    +theme(header)
+      right 0
+      margin-right 0
+
+.{$page-loading}
+  overflow hidden

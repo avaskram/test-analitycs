@@ -1,0 +1,27 @@
++theme(menu)
+	height 100%
+	
+	&__list
+		flex-row-stretch()
+		height 100%
+
+	&__item
+		flex-col-md()
+		position relative
+
+	&__link
+		flex-col-md()
+		padding-y($rem)
+		padding-x($rem)
+
+		&--image
+			circle-image(40px)
+			max-height 40px
+			max-width 40px
+			display block
+			padding 0
+			margin-left 1.2rem
+
+			
+		&:hover
+			color $theme-color

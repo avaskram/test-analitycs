@@ -1,0 +1,10 @@
+mixin info-item(title,text,ic)
+	+b.info&attributes(attributes)
+		if ic != undefined & ic != ''
+			+e.icon
+				+icon(ic)
+		if title != ''
+			+e.title= title
+		if text != ''
+			+e.text
+				p= text

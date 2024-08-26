@@ -1,0 +1,36 @@
+mixin list-item(link)
+  if link != undefined
+    +e.list-item
+      +e.A.link&attributes(attributes)
+        if block
+          block
+          != link
+        else
+          != link
+  else
+    +e.list-item&attributes(attributes)
+      if block
+        block
+
+mixin li-item(link)
+  if link != undefined
+    +e.LI.list-item
+      +e.A.link&attributes(attributes)
+        if block
+          block
+        else
+          != link
+  else
+    +e.LI.list-item&attributes(attributes)
+      if block
+        block
+
+mixin list()
+  +e.list&attributes(attributes)
+    if block
+      block
+        
+mixin list-ul()
+  +e.UL.list&attributes(attributes)
+    if block
+      block

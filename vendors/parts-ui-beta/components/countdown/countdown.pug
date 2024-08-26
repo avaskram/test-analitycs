@@ -1,0 +1,6 @@
+mixin times-counter(title,times)
+  +b.counter
+    +e.SPAN.title= title
+    +e.SPAN.container.js-countdown(data-countdown-time=times)
+    //-- Countdown.js
+    //-- time format 2018-02-01 00:00

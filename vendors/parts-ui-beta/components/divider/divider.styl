@@ -1,0 +1,20 @@
+///// dividers / separators
++theme(divider)
+  border 0
+  background-color $gray-border
+  height 1px
+  display block
+  margin-y($text-indent)
+
+  &--lg
+    margin-y($text-indent*2)
+    margin-x(0)
+
+  &--color
+    background-color $theme-color
+
+  &--light
+    background-color alpha(#fff,.1)
+
+  &--dark
+    background-color alpha(#000,.1)

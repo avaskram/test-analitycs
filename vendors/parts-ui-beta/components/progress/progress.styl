@@ -1,0 +1,164 @@
+$progressbar-size-base = 20px
+
+$progressbar-sizes = {
+  sm: 10px,
+  md: 30px,
+  lg: 40px
+}
+
+$orig-size = $progressbar-size-base
+$half-size = ($orig-size/2)
+
+// +theme(progressbar)
+.{$theme}-progressbar
+  progressbar($orig-size,$gray-border,$theme-color)
+
+  progressbar-template(size)
+    +child-el(container)
+      margin-y($half-size)
+
+    +child-el(line)
+      height $half-size
+
+    +child-el(item)
+      &:after
+        margin-left (($orig-size)/4)
+      &:before
+        margin-right (($orig-size)/4)
+
+    +child-el(circle)
+      circle-fill($half-size,alpha($dark,.1))
+      hard-width($half-size)
+      hard-height($half-size)
+      margin-x(auto)
+      position relative
+
+
+  progressbar-template($orig-size)
+
+  for mod in $progressbar-sizes
+    $orig-size = $progressbar-sizes[mod]
+    $half-size = ($orig-size/2)
+
+    &--{mod}
+      progressbar-template(mod)
+
+    &--rounded
+      +child-el(line)
+        border-radius $half-size
+
+    +child-el(circle)
+      &:before
+        box-shadow 0 1px ($orig-size/10) 1px alpha($dark,.2)
+      +after()
+        background-color $success-color
+
+  &--steps
+    overflow visible
+
+    +child-el(container)
+      flex-row-md()
+      justify-content space-between
+      position relative
+
+  &__circle
+    border 1px solid transparent
+    display block
+    border-radius 50%
+    z-index 1
+
+    &:before,
+    &:after
+      border-radius 50%
+      transition opacity .2s ease 0s, transform .34s $quint 0s
+      fullsize-scale(-1px,-1px)
+
+    &:before
+      invisible()
+
+    &:after
+      invisible()
+      border 1px solid transparent
+
+  &__item
+    flex 1
+    width 100%
+    position relative
+    overflow hidden
+    padding-y(($orig-size)/2)
+
+    &:after
+    &:before
+      height 1px
+      position absolute
+      background-color alpha($dark,.1)
+      width 2000px
+      centering-y()
+
+    +before()
+      right 50%
+
+    +after()
+      left 50%
+
+    clear-before-first()
+    clear-after-last()
+
+    &--current
+      &:before
+        bg-success()
+
+      +child-el(circle)
+        background-color #fff
+        border-color $success-color
+
+
+
+    &--done
+      +child-el(circle)
+        bg-success()
+        &:after
+          visible()
+
+      &:after
+      &:before
+        bg-success()
+
+
+    &--done
+    &--current
+      display block
+
+      +child-el(circle)
+        &:before
+          scaled(.5)
+          bg-light()
+
+
+      // &:hover
+      //   +child-el(circle)
+      //     &:after
+      //       visible()
+      //       scaled(.8)
+      //
+      //     &:before
+      //       visible()
+      //       scaled(1.5)
+
+
+  &--sm
+    +child-el(circle)
+      border-width 1px
+
+    +child-el(item)
+      +before-after()
+        height 1px
+
+  &--md
+    +child-el(item)
+      +before-after()
+        height 2px
+  &--lg
+    +child-el(item)
+      +before-after()
+        height 3px

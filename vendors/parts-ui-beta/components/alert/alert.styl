@@ -1,0 +1,44 @@
+// @require '../../ui-core/vars/index'
+// @require '../../ui-core/mixins/index'
+
+/// alerts
++theme(alert)
+  position relative
+  &__message
+    background-color #fff
+    border-radius $card-cadius
+    box-shadow $card-shadow
+    max-width 400px
+    margin 0 auto
+    z-index 2
+    padding $card-padding
+    position relative
+    invisible()
+    transition-opacity-transform(.3s)
+    scaled(.9)
+    active-visible()
+
+    &--center
+      text-align center
+
+
+  &__title
+    title()
+    margin-top 0
+
+
+  &__body
+    fullsize()
+
+  &__close
+    circle(30px)
+    position absolute
+    top -15px
+    right -15px
+    text-align center
+    font-size 20px
+    line-height 32px
+    cursor pointer
+    text-bold()
+    bg-light()
+    css-icon-close(30px,2px,#fff)
